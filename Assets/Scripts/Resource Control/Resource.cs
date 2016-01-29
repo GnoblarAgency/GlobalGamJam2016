@@ -28,56 +28,55 @@ public static class ResourceDefaultValues
 /// A base class in order to represent our various resource types
 public abstract class Resource 
 {
-	#region PROPERTIES
-	public string Name { get; private set; }
-	public float Value { get; protected set; }
+	#region CONSTANTS
+	public readonly float BaseGrowth;
 	#endregion
 
-	public Resource (string name)
+	#region PROPERTIES
+	public string DisplayName { get; private set; }
+
+	public float ModifiedGrowth { get; protected set; }
+	public float TotalAmount { get; protected set; }
+	#endregion
+
+	public Resource (string name, float baseGrowth)
 	{
-		Name = name ;
+		DisplayName = name;
+		BaseGrowth = baseGrowth;
 	}
 
-	public void SetValue (float value)
+	public void ApplyModifier (float value)
 	{
-		Value = value;
+		ModifiedGrowth += value;
 	}
 
+	public void RemoveModifier (float value)
+	{
+		ModifiedGrowth -= value;
+	}
 }
 	
 public class FoodResource : Resource
 {
 	public FoodResource (float initialValue = ResourceDefaultValues.FOOD)
-		: base (ResourceNames.FOOD)
-	{
-		Value = initialValue;
-	}
+		: base (ResourceNames.FOOD, initialValue) {}
 }
 
 public class HappinessResource : Resource
 {
 	public HappinessResource (float initialValue = ResourceDefaultValues.HAPPINESS)
-		: base (ResourceNames.HAPPINESS)
-	{
-		Value = initialValue;
-	}
+		: base (ResourceNames.HAPPINESS, initialValue) {}
 }
 
 public class PopulationResource : Resource
 {
 	public PopulationResource (float initialValue = ResourceDefaultValues.POPULATION)
-		: base (ResourceNames.POPULATION)
-	{
-		Value = initialValue;
-	}
+		: base (ResourceNames.POPULATION, initialValue) {}
 }
 
 public class PrisonersResource : Resource
 {
 	public PrisonersResource (float initialValue = ResourceDefaultValues.PRISONERS) 
-		: base (ResourceNames.PRISONERS)
-	{
-		Value = initialValue;
-	}
+		: base (ResourceNames.PRISONERS, initialValue) {}
 }
 #endregion

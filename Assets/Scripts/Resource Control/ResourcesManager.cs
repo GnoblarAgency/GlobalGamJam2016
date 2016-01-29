@@ -61,10 +61,10 @@ public sealed class ResourcesManager : MonoBehaviour
 		Resource population = new PopulationResource ();
 		Resource prisoners = new PopulationResource ();
 
-		mResources.Add (food.Name, food);
-		mResources.Add (happiness.Name, happiness);
-		mResources.Add (population.Name, population);
-		mResources.Add (prisoners.Name, prisoners);
+		mResources.Add (food.DisplayName, food);
+		mResources.Add (happiness.DisplayName, happiness);
+		mResources.Add (population.DisplayName, population);
+		mResources.Add (prisoners.DisplayName, prisoners);
 	}
 	#endregion
 }
