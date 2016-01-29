@@ -1,0 +1,89 @@
+# Git Ignore for Unity projects
+
+# Add some needed libraries that are otherwise ignored
+!Photon3Unity3D.dll
+!Lite.Common.dll
+
+!core.jar
+!apptag.jar
+!QCAR.jar
+!QCARUnityPlayer.jar
+!libAppTagSDKWrapper.so
+!libgdx-audio.so
+!libQCAR.so
+!libQCARUnityPlayer.so
+
+!P31*.dll
+!Prime31*.dll
+!P31PostProcessor.pyc
+
+!Assets/Plugins/Android/*.jar
+!Assets/Plugins/iOS/*.dll
+
+# Ignore Temp and Library folders
+[Tt]emp/*
+[Oo]bj/*
+[Ll]ibrary/*
+[Ll]ocalDocs/*
+Backup/*
+
+[Ll]ibrary/cache
+[Ll]ibrary/metadata
+[Ll]ibrary/previews
+[Ll]ibrary/ScriptAssemblies
+[Ll]ibrary/assetDatabase3
+[Ll]ibrary/AssetServerCacheV3
+[Ll]ibrary/guidmapper
+[Ll]ibrary/expandedItems
+
+
+FailedAssetImports.txt
+ServerPreferences.plist
+
+#!Library/*.asset
+#!Library/AssetImportState
+#!Library/AssetVersioning.db
+#!Library/BuildPlayer.prefs
+#!Library/ScriptMapper
+#!Library/assetservercachev3
+#!Library/expandedItems
+#!Library/guidmapper
+#!Library/unity default resources
+#!Library/unity editor resources
+#!Library/metadata/
+
+# Ignore IDE projects
+*.csproj
+*.pidb
+*.sln
+*.userprefs
+*.unityproj
+
+# Ignore Android builds
+*.apk
+*.obb
+aapt
+apktool
+
+# Ignore iOS builds
+*iOS/*
+*.ipa
+*.cer
+*.mobileprovision
+
+# Ignore PC builds
+*.exe
+
+# Ignore Mac OS X and Windows meta data
+.DS_Store
+Thumbs.db*
+
+# Ignore app data
+AppTagMP_Data/*
+
+# Ignore screenshots
+solution.png
+
+# Ignore QCAR unity version
+unity.txt
+
