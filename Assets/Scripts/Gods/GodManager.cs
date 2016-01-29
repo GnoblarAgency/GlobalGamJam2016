@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 
-public  class GodManager : MonoBehaviour
+public sealed  class GodManager : MonoBehaviour
 {
 	#region PROPERTIES
 	public static GodManager Instance { get; private set; }
@@ -17,7 +17,7 @@ public  class GodManager : MonoBehaviour
 
 
 	#region UNITY EVENTS
-	void Awake()
+	void Awake ()
 	{
 		if (Instance == null)
 		{
@@ -25,7 +25,7 @@ public  class GodManager : MonoBehaviour
 		}
 		else
 		{
-			Debug.LogError("There is more than one GodManager in the scene!");
+			Debug.LogError ("There is more than one GodManager in the scene!");
 		}
 	}
 	#endregion
