@@ -29,7 +29,7 @@ public static class ResourceDefaultValues
 public abstract class Resource 
 {
 	public string Name { get; private set; }
-	public float Value { get; set; }
+	public float Value { get; private set; }
 	protected float Modifier { get; private set; }
 
 	public Resource (string name)
@@ -37,6 +37,15 @@ public abstract class Resource
 		Name = name ;
 	}
 
+	public void AdjustModifier (float amount)
+	{
+		Modifier += amount;
+	}
+
+	public float GetValue ()
+	{
+		return Mathf.Clamp (Value + Modifier);
+	}
 
 }
 	
