@@ -17,5 +17,10 @@ public class Curse : DivineEffect
 	{
 		throw new System.NotImplementedException ();
 	}
+
+	public override void RemoveEffect ()
+	{
+		throw new System.NotImplementedException ();
+	}
 	#endregion
 }
