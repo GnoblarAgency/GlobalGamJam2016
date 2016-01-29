@@ -29,22 +29,16 @@ public static class ResourceDefaultValues
 public abstract class Resource 
 {
 	public string Name { get; private set; }
-	public float Value { get; private set; }
-	protected float Modifier { get; private set; }
+	protected float Value { get; private set; }
 
 	public Resource (string name)
 	{
 		Name = name ;
 	}
 
-	public void AdjustModifier (float amount)
+	public float SetValue (float value)
 	{
-		Modifier += amount;
-	}
-
-	public float GetValue ()
-	{
-		return Mathf.Clamp (Value + Modifier);
+		Value;
 	}
 
 }
