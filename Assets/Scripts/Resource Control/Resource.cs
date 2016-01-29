@@ -28,17 +28,19 @@ public static class ResourceDefaultValues
 /// A base class in order to represent our various resource types
 public abstract class Resource 
 {
+	#region PROPERTIES
 	public string Name { get; private set; }
-	protected float Value { get; private set; }
+	public float Value { get; protected set; }
+	#endregion
 
 	public Resource (string name)
 	{
 		Name = name ;
 	}
 
-	public float SetValue (float value)
+	public void SetValue (float value)
 	{
-		Value;
+		Value = value;
 	}
 
 }
