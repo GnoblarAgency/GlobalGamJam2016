@@ -32,6 +32,16 @@ public sealed  class GodManager : MonoBehaviour
 			Debug.LogError ("There is more than one GodManager in the scene!");
 		}
 	}
+
+	void Start ()
+	{
+		
+	}
+
+	void Update ()
+	{
+		
+	}
 	#endregion
 
 

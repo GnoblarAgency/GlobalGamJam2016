@@ -57,6 +57,13 @@ public abstract class Resource
 	{
 		ModifiedGrowth -= value;
 	}
+
+	/// Applies the current growth value to the total amount of this resource.
+	public void UpdateResourceTotal ()
+	{
+		TotalAmount += ModifiedGrowth;
+		TotalAmount = TotalAmount < 0 ? 0 : TotalAmount;
+	}
 }
 	
 public class FoodResource : Resource

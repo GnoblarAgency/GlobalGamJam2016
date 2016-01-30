@@ -15,7 +15,10 @@ public sealed class ResourcesManager : MonoBehaviour
 
 
 	#region PRIVATE VARIABLES
-	Dictionary <string, Resource> mResources = new Dictionary <string, Resource> ();
+	private Dictionary <string, Resource> mResources = new Dictionary <string, Resource> ();
+
+	private const float TICK_DELAY = 10f;
+	private float mTickTimer;
 	#endregion
 
 
@@ -39,7 +42,13 @@ public sealed class ResourcesManager : MonoBehaviour
 
 	void Update () 
 	{
-	
+		mTickTimer += Time.deltaTime;
+
+		if (mTickTimer >= TICK_DELAY)
+		{
+			mTickTimer = 0f;
+			UpdateResources ();
+		}
 	}
 	#endregion
 
@@ -77,16 +86,27 @@ public sealed class ResourcesManager : MonoBehaviour
 	#endregion
 
 
+	#region RESOURCE GROWTH
+	/// Applies the growth to the total accumulated resources value.
+	void UpdateResources ()
+	{
+		foreach (Resource r in mResources.Values)
+		{
+			r.UpdateResourceTotal ();
+		}
+	}
+	#endregion
+
+
 	#region INITIALIZATION
 	void Init ()
 	{
+		mTickTimer = 0f;
 		CreateResourceStore ();
 	}
 
 	void CreateResourceStore ()
 	{
-
-		Debug.Log ("Creating store");
 		Resource food = new FoodResource ();
 		Resource happiness = new HappinessResource ();
 		Resource population = new PopulationResource ();
