@@ -50,11 +50,17 @@ public class BuildingManager : MonoBehaviour
 		if (true) //TODO replace with UI not already displaying some UI
 		{
 			Ray ray = Camera.main.ScreenPointToRay(position);
-			RaycastHit hit = new RaycastHit();
+			RaycastHit hit;
 
-			if (Physics.Raycast(ray, out hit, 100, Layers.BUILDINGS_MASK))
+			if (Physics.Raycast(ray, out hit, 10000, Layers.BUILDINGS_MASK))
 			{
-				
+				Building building = hit.collider.gameObject.GetComponent<Building>();
+
+				Debug.LogFormat("Clicked on {0} - Is building clickable? {1}", building.displayName, building.isClickable);
+				if (building.isClickable)
+				{
+					//TODO do amazing stuff!
+				}
 			}
 		}
 	}

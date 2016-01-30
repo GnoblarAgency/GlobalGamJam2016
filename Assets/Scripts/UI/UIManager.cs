@@ -46,6 +46,16 @@ public sealed class UIManager : MonoBehaviour
 
 
 	#region PUBLIC_FACING API
+
+	#endregion
+
+
+	#region HELPER FUNCTIONS
+	void HideAll ()
+	{
+
+	}
+
 	#endregion
 
 
@@ -55,6 +65,7 @@ public sealed class UIManager : MonoBehaviour
 
 	}
 	#endregion
+
 
 	#region DEBUG
 	void DebugOutResources ()

@@ -8,12 +8,12 @@ public class AudioManager : MonoBehaviour {
 	public AudioClip[] Curses;
 	public AudioSource source;
 
-	static AudioManager instance;
+	static AudioManager Instance;
 
 
 	public void Start()
 	{
-		instance = this;
+		Instance = this;
 	}
 
 

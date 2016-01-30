@@ -4,7 +4,7 @@ using System.Collections.Generic;
 public abstract class Building : MonoBehaviour
 {
 	#region PUBLIC VARIABLES
-	public bool clickable = true;
+	public bool isClickable = true;
 
 	public string displayName;
 	#endregion
