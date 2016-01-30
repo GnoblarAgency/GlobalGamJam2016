@@ -21,7 +21,7 @@ public sealed class ResourcesManager : MonoBehaviour
 
 
 	#region PRIVATE VARIABLES
-	private StatsCalculator mStatsCalculator;
+	private StatisticsEngine mStatsCalculator;
 	private Dictionary <string, Resource> mResources = new Dictionary <string, Resource> ();
 
 
@@ -124,7 +124,7 @@ public sealed class ResourcesManager : MonoBehaviour
 		mTickTimer = 0f;
 		CreateResourceStore ();
 
-		mStatsCalculator = new StatsCalculator ();
+		mStatsCalculator = new StatisticsEngine ();
 	}
 
 	void CreateResourceStore ()
