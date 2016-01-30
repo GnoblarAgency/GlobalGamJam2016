@@ -59,7 +59,8 @@ public sealed class ResourcesManager : MonoBehaviour
 			UpdateResources ();
 			PopulationAssignment.instance.UpdatePopulationAssignment();
 			mStatsEngine.UpdateStats ();
-
+		
+			PeopleSpawner.instance.CheckSpawn(GetResourcePopulation().TotalAmount);
 			//event
 			OnTick ();
 		}

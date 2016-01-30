@@ -37,29 +37,29 @@ public class CameraMotion : MonoBehaviour {
 		if ( Input.GetKey("mouse 2") )
 		{
 			//(Input.mousePosition.x - Screen.width * 0.5)/(Screen.width * 0.5)
-			if (transform.position.z > 320 && transform.position.x < 420 && transform.position.z > 120 && transform.position.z < 220)
+			if (Vector3.Distance(transform.position, InitPos) < 20)
 			transform.Translate(transform.right * Time.deltaTime * PanSpeed * (Input.mousePosition.x - Screen.width * 0.5f)/(Screen.width * 0.5f), Space.World);
 
-			if (transform.position.z > 120 && transform.position.z < 220 && transform.position.z > 320 && transform.position.x < 420)
+			if (Vector3.Distance(transform.position, InitPos) < 20)
 			transform.Translate(transform.forward * Time.deltaTime * PanSpeed * (Input.mousePosition.y - Screen.height * 0.5f)/(Screen.height * 0.5f), Space.World);
 
 		}
 		else
 		{
-			if ( Input.GetKey("d") || Input.mousePosition.x >= Screen.width * (1 - ScrollEdge) )
+			if ( (Input.GetKey("d") || Input.mousePosition.x >= Screen.width * (1 - ScrollEdge)) &&  (Vector3.Distance(transform.position+(transform.right * Time.deltaTime * ScrollSpeed), InitPos) < 80) )
 			{
 				transform.Translate(transform.right * Time.deltaTime * ScrollSpeed, Space.World);
 			}
-			else if ( Input.GetKey("a") || Input.mousePosition.x <= Screen.width * ScrollEdge )
+			else if ( (Input.GetKey("a") || Input.mousePosition.x <= Screen.width * ScrollEdge) &&  (Vector3.Distance(transform.position+(transform.right * Time.deltaTime * -ScrollSpeed), InitPos) < 80) )
 			{
 				transform.Translate(transform.right * Time.deltaTime * -ScrollSpeed, Space.World);
 			}
 
-			if ( Input.GetKey("w") || Input.mousePosition.y >= Screen.height * (1 - ScrollEdge) )
+			if ( (Input.GetKey("w") || Input.mousePosition.y >= Screen.height * (1 - ScrollEdge)) &&  (Vector3.Distance(transform.position+(transform.forward * Time.deltaTime * ScrollSpeed), InitPos) < 80) )
 			{
 				transform.Translate(transform.forward * Time.deltaTime * ScrollSpeed, Space.World);
 			}
-			else if ( Input.GetKey("s") || Input.mousePosition.y <= Screen.height * ScrollEdge )
+			else if ( (Input.GetKey("s") || Input.mousePosition.y <= Screen.height * ScrollEdge) &&  (Vector3.Distance(transform.position+(transform.forward * Time.deltaTime * -ScrollSpeed), InitPos) < 80) )
 			{
 				transform.Translate(transform.forward * Time.deltaTime * -ScrollSpeed, Space.World);
 			}
