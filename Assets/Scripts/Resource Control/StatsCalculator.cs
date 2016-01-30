@@ -12,6 +12,13 @@ public class StatsCalculator
 	// High food growth = +Happiness
 	// X people = X food ; if surplus food, +Pop growth
 
+	//our resource types, laid out here for easy-peasy referency goodness
+	FoodResource food;
+	PopulationResource population;
+	PrisonersResource prisoners;
+
+	HappinessResource happiness;
+
 	public StatsCalculator ()
 	{
 		

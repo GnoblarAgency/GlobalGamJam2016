@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -10,17 +11,7 @@ public static class ResourceNames
 	public const string HAPPINESS = "Happiness";
 	public const string POPULATION = "Population";
 	public const string PRISONERS = "Prisoners";
-}
-#endregion
-
-
-#region INITIALIZATION VALUES
-public static class ResourceDefaultGrowthValues
-{
-	public const float FOOD = 10;
-	public const float HAPPINESS = 10;
-	public const float POPULATION = 10;
-	public const float PRISONERS = 10;
+	public const string FAVOUR = "Favour";
 }
 #endregion
 
@@ -32,6 +23,8 @@ public abstract class Resource
 	#region CONSTANTS
 	/// The default growth per tick offered by this resource type
 	public readonly float BaseGrowth;
+	/// The inital number of resources that we start
+	public readonly float BaseAmount;
 	#endregion
 
 	#region PROPERTIES
@@ -43,10 +36,11 @@ public abstract class Resource
 	public float TotalAmount { get; protected set; }
 	#endregion
 
-	public Resource (string name, float baseGrowth)
+	public Resource (string name, float baseAmount, float baseGrowth)
 	{
 		DisplayName = name;
 		BaseGrowth = baseGrowth;
+		BaseAmount = baseAmount;
 		GrowthModifiers = new List<ResourceModifier> ();
 	}
 
@@ -88,33 +82,51 @@ public abstract class Resource
 	
 public class FoodResource : Resource
 {
-	public FoodResource (float initialValue = ResourceDefaultGrowthValues.FOOD)
-		: base (ResourceNames.FOOD, initialValue) {}
+	public FoodResource (float baseAmount = 10, float baseGrowth = 10)
+		: base (ResourceNames.FOOD, baseAmount, baseGrowth) {}
 }
 	
 public class PopulationResource : Resource
 {
-	public PopulationResource (float initialValue = ResourceDefaultGrowthValues.POPULATION)
-		: base (ResourceNames.POPULATION, initialValue) {}
+	public PopulationResource (float baseAmount = 5, float baseGrowth = 0)
+		: base (ResourceNames.POPULATION, baseAmount, baseGrowth) {}
 }
 
 public class PrisonersResource : Resource
 {
-	public PrisonersResource (float initialValue = ResourceDefaultGrowthValues.PRISONERS) 
-		: base (ResourceNames.PRISONERS, initialValue) {}
+	public PrisonersResource (float baseAmount = 0, float baseGrowth = 0)
+		: base (ResourceNames.PRISONERS, baseAmount, baseGrowth) {}
 }
 
 public class HappinessResource : Resource
 {
-	public HappinessResource (float initialValue = ResourceDefaultGrowthValues.HAPPINESS)
-		: base (ResourceNames.HAPPINESS, initialValue) {
-	}
+	public HappinessResource (float baseAmount = 60, float baseGrowth = 0)
+		: base (ResourceNames.HAPPINESS, baseAmount, baseGrowth) {}
 
 	/// Applies the current growth value to the total amount of this resource.
 	public override void UpdateResourceTotal ()
 	{
 		TotalAmount += GetTotalGrowth();
 		TotalAmount = Mathf.Clamp (TotalAmount, 0, 100);
+	}
+}
+
+public class FavourResource : Resource
+{
+
+	#region PUBLIC EVENTS
+	public static event Action Curse = delegate {};
+	public static event Action Neutral = delegate {};
+	public static event Action Blessing = delegate {};
+	#endregion
+
+	public FavourResource (float baseAmount = 5, float baseGrowth = 0)
+		: base (ResourceNames.FAVOUR, baseAmount, baseGrowth) {}
+
+	/// Applies the current growth value to the total amount of this resource.
+	public override void UpdateResourceTotal ()
+	{
+		TotalAmount += GetTotalGrowth();
 	}
 }
 

@@ -94,6 +94,11 @@ public sealed class ResourcesManager : MonoBehaviour
 	{
 		return mResources[ResourceNames.PRISONERS];
 	}
+
+	public Resource GetResourceFavour ()
+	{
+		return mResources[ResourceNames.PRISONERS];
+	}
 	#endregion
 
 
