@@ -28,6 +28,8 @@ public abstract class Building : MonoBehaviour
 	{
 		return string.Format ("{0}", DisplayName);
 	}
+
+	public virtual void OpenUI() {}
 	#endregion
 
 

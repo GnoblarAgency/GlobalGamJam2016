@@ -57,11 +57,10 @@ public sealed class BuildingManager : MonoBehaviour
 				Building building = hit.collider.GetComponent<Building>();
 				if (building == null)
 				{ building = hit.collider.GetComponentInParent<Building> (); }
-
-				Debug.LogFormat("Clicked on {0} - Is building clickable? {1}", building, building.IsClickable);
+					
 				if (building.IsClickable)
 				{
-					//TODO do amazing stuff!
+					building.OpenUI();
 				}
 			}
 		}
