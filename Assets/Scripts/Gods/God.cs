@@ -15,7 +15,7 @@ public abstract class God
 
 
 	#region PROTECTED VARIABLES
-	protected Dictionary<string, float> mResourceModifiers; 
+	protected List <ResourceModifier> mResourceModifiers; 
 	#endregion
 
 
@@ -25,12 +25,17 @@ public abstract class God
 		DisplayName = displayName;
 		Title = title;
 
-		mResourceModifiers = new Dictionary<string, float> ();
+		mResourceModifiers = new List<ResourceModifier> ();
 	}
 	#endregion
 
 
 	#region PUBLIC API
+	/// Gets the list of resource modifiers that this god applies.
+	public List<ResourceModifier> GetResourceModifiers ()
+	{
+		return mResourceModifiers;
+	}
 	#endregion
 
 
@@ -44,8 +49,8 @@ public class DiseaseGod : God
 	public DiseaseGod ()
 		: base ("Chalchiuhtotolin", "God of Disease and Plague")
 	{
-		mResourceModifiers.Add (ResourceNames.HAPPINESS, -5f);
-		mResourceModifiers.Add (ResourceNames.FOOD, 5f);
+		mResourceModifiers.Add ( new ResourceModifier (ResourceNames.HAPPINESS, -5f));
+		mResourceModifiers.Add ( new ResourceModifier (ResourceNames.FOOD, 5f));
 	}
 	#endregion
 }
@@ -66,8 +71,8 @@ public class SunGod : God
 	public SunGod ()
 		: base ("Tonatiuh", "God of the Sun")
 	{
-		mResourceModifiers.Add (ResourceNames.HAPPINESS, 10f);
-		mResourceModifiers.Add (ResourceNames.PRISONERS, -10f);
+		mResourceModifiers.Add ( new ResourceModifier (ResourceNames.HAPPINESS, 10f));
+		mResourceModifiers.Add ( new ResourceModifier (ResourceNames.PRISONERS, -10f));
 	}
 	#endregion
 }
@@ -78,8 +83,8 @@ public class WarGod : God
 	public WarGod ()
 		: base ("Mixcoatl", "God of War and the Hunt")
 	{
-		mResourceModifiers.Add (ResourceNames.POPULATION, -10f);
-		mResourceModifiers.Add (ResourceNames.FOOD, 10f);
+		mResourceModifiers.Add ( new ResourceModifier (ResourceNames.POPULATION, -10f));
+		mResourceModifiers.Add ( new ResourceModifier (ResourceNames.FOOD, 10f));
 	}
 	#endregion
 }
@@ -90,8 +95,8 @@ public class FarmGod : God
 	public FarmGod ()
 		: base ("Chicomecoatl", "Goddess of Agriculture")
 	{
-		mResourceModifiers.Add (ResourceNames.PRISONERS, -10f);
-		mResourceModifiers.Add (ResourceNames.FOOD, 10f);
+		mResourceModifiers.Add ( new ResourceModifier (ResourceNames.PRISONERS, -10f));
+		mResourceModifiers.Add ( new ResourceModifier (ResourceNames.FOOD, 10f));
 	}
 	#endregion
 }
