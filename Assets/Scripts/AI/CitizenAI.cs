@@ -14,23 +14,25 @@ public class CitizenAI : MonoBehaviour {
 		agent = GetComponent<NavMeshAgent>();
 		anim = GetComponent<Animator>();
 
-		//StartCoroutine(AILoop());
+		StartCoroutine(AILoop());
 	}
 
 	IEnumerator AILoop()
 	{
+		//Roam();
 		while (true)
 		{
+		
 			anim.SetFloat("agentSpeed",agent.velocity.magnitude);
 			if (agent.remainingDistance < 1)
 			{
-				yield return whatNext();
+				yield return StartCoroutine(whatNext());
 			}
 		}
 	}
 
 
-	void Roam()
+	private void Roam()
 	{
 		Vector3 randomDirection = Random.insideUnitSphere * walkRadius;
 		randomDirection += transform.position;
@@ -40,8 +42,9 @@ public class CitizenAI : MonoBehaviour {
 		agent.SetDestination(finalPosition);
 	}
 
-	IEnumerator whatNext()
+	private IEnumerator whatNext()
 	{
+		anim.SetFloat("agentSpeed",agent.velocity.magnitude);
 		float choice = Random.Range(0.0f, 1.0f);
 
 		if (choice <= 0.5f)
