@@ -49,8 +49,8 @@ public class DiseaseGod : God
 	public DiseaseGod ()
 		: base ("Chalchiuhtotolin", "God of Disease and Plague")
 	{
-		mResourceModifiers.Add ( new ResourceModifier (ResourceNames.HAPPINESS, -5f));
-		mResourceModifiers.Add ( new ResourceModifier (ResourceNames.FOOD, 5f));
+		mResourceModifiers.Add ( new ResourceModifier (ResourceType.Happiness, 3f));
+		mResourceModifiers.Add ( new ResourceModifier (ResourceType.Food, 3f));
 	}
 	#endregion
 }
@@ -59,7 +59,14 @@ public class SacrificeGod : God
 {
 	#region CONSTRUCTORS
 	public SacrificeGod ()
-		: base ("Itzpapalotl", "Goddess of Sacrifice") {}
+		: base ("Itzpapalotl", "Goddess of Sacrifice") 
+	{
+		mResourceModifiers.Add ( new ResourceModifier (ResourceType.Happiness, 2f));
+		mResourceModifiers.Add ( new ResourceModifier (ResourceType.Food, 2f));
+		mResourceModifiers.Add ( new ResourceModifier (ResourceType.Population, 2f));
+		mResourceModifiers.Add ( new ResourceModifier (ResourceType.Prisoners, 2f));
+
+	}
 	#endregion
 
 
@@ -71,8 +78,8 @@ public class SunGod : God
 	public SunGod ()
 		: base ("Tonatiuh", "God of the Sun")
 	{
-		mResourceModifiers.Add ( new ResourceModifier (ResourceNames.HAPPINESS, 10f));
-		mResourceModifiers.Add ( new ResourceModifier (ResourceNames.PRISONERS, -10f));
+		mResourceModifiers.Add ( new ResourceModifier (ResourceType.Happiness, 3f));
+		mResourceModifiers.Add ( new ResourceModifier (ResourceType.Prisoners, 3f));
 	}
 	#endregion
 }
@@ -83,8 +90,8 @@ public class WarGod : God
 	public WarGod ()
 		: base ("Mixcoatl", "God of War and the Hunt")
 	{
-		mResourceModifiers.Add ( new ResourceModifier (ResourceNames.POPULATION, -10f));
-		mResourceModifiers.Add ( new ResourceModifier (ResourceNames.FOOD, 10f));
+		mResourceModifiers.Add ( new ResourceModifier (ResourceType.Population, 2f));
+		mResourceModifiers.Add ( new ResourceModifier (ResourceType.Food, 4f));
 	}
 	#endregion
 }
@@ -95,8 +102,8 @@ public class FarmGod : God
 	public FarmGod ()
 		: base ("Chicomecoatl", "Goddess of Agriculture")
 	{
-		mResourceModifiers.Add ( new ResourceModifier (ResourceNames.PRISONERS, -10f));
-		mResourceModifiers.Add ( new ResourceModifier (ResourceNames.FOOD, 10f));
+		mResourceModifiers.Add ( new ResourceModifier (ResourceType.Prisoners, 2f));
+		mResourceModifiers.Add ( new ResourceModifier (ResourceType.Food, 4f));
 	}
 	#endregion
 }

@@ -22,7 +22,7 @@ public sealed class ResourcesManager : MonoBehaviour
 
 	#region PRIVATE VARIABLES
 	private StatsCalculator mStatsCalculator;
-	private Dictionary <string, Resource> mResources = new Dictionary <string, Resource> ();
+	private Dictionary <ResourceType, Resource> mResources = new Dictionary <ResourceType, Resource> ();
 
 
 	private float mTickTimer;
@@ -70,38 +70,38 @@ public sealed class ResourcesManager : MonoBehaviour
 	#region PUBLIC_FACING API
 	public void ApplyModifier (ResourceModifier modifier)
 	{
-		mResources[modifier.Name].ApplyModifier(modifier);
+		mResources[modifier.resourceType].ApplyModifier(modifier);
 	}
 
 	public void RemoveModifier (ResourceModifier modifier)
 	{
-		mResources[modifier.Name].RemoveModifier(modifier);
+		mResources[modifier.resourceType].RemoveModifier(modifier);
 	}
 
 
 	public Resource GetResourceFood ()
 	{
-		return mResources[ResourceNames.FOOD];
+		return mResources[ResourceType.Food];
 	}
 
 	public Resource GetResourceHappiness ()
 	{
-		return mResources[ResourceNames.HAPPINESS];
+		return mResources[ResourceType.Happiness];
 	}
 
 	public Resource GetResourcePopulation ()
 	{
-		return mResources[ResourceNames.POPULATION];
+		return mResources[ResourceType.Population];
 	}
 
 	public Resource GetResourcePrisoners ()
 	{
-		return mResources[ResourceNames.PRISONERS];
+		return mResources[ResourceType.Prisoners];
 	}
 
 	public Resource GetResourceFavour ()
 	{
-		return mResources[ResourceNames.FAVOUR];
+		return mResources[ResourceType.Favour];
 	}
 	#endregion
 
@@ -135,11 +135,11 @@ public sealed class ResourcesManager : MonoBehaviour
 		Resource prisoners = new PrisonersResource ();
 		Resource favour = new FavourResource ();
 
-		mResources.Add (food.DisplayName, food);
-		mResources.Add (happiness.DisplayName, happiness);
-		mResources.Add (population.DisplayName, population);
-		mResources.Add (prisoners.DisplayName, prisoners);
-		mResources.Add (favour.DisplayName, favour);
+		mResources.Add (ResourceType.Food, food);
+		mResources.Add (ResourceType.Happiness, happiness);
+		mResources.Add (ResourceType.Population, population);
+		mResources.Add (ResourceType.Prisoners, prisoners);
+		mResources.Add (ResourceType.Favour, favour);
 	}
 	#endregion
 }
