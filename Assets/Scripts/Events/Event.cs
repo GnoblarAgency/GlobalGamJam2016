@@ -4,7 +4,6 @@ using System.Collections;
 public abstract class Event : MonoBehaviour
 {
 	#region PROPERTIES
-	public bool isActive { get; private set; }
 	#endregion
 
 	#region PUBLIC VARIABLES
@@ -24,25 +23,15 @@ public abstract class Event : MonoBehaviour
 
 
 	#region UNITY EVENTS
-	void OnEnable ()
-	{
-		isActive = true;
-	}
-
 	void Update ()
 	{
-		if (isActive)
+		mEventTimer += Time.deltaTime;
+
+		if (mEventTimer >= eventLength)
 		{
-			mEventTimer += Time.deltaTime;
+			mEventTimer = 0f;
 
-			if (mEventTimer >= eventLength)
-			{
-				mEventTimer = 0f;
-
-				isActive = false;
-
-				RemoveEffect();
-			}
+			RemoveEffect();
 		}
 	}
 	#endregion

@@ -11,6 +11,9 @@ public class God : MonoBehaviour
 	public string biography;
 
 	public ResourceModifier[] resourceModifiers = new ResourceModifier[0]; 
+
+	public Curse[] curses = new Curse[0];
+	public Blessing[] blessings = new Blessing[0];
 	#endregion
 
 

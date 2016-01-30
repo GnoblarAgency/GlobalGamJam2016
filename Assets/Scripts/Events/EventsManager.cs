@@ -67,7 +67,7 @@ public sealed class EventsManager : MonoBehaviour
 	{
 		mActiveEvents.Remove (activeEvent);
 
-		GameObject.Destroy(activeEvent);
+		Destroy(activeEvent.gameObject);
 	}
 	#endregion
 
