@@ -22,6 +22,17 @@ public class God : MonoBehaviour
 
 
 	#region PUBLIC API
+	public void ApplyEffect ()
+	{
+		for (int i = 0; i < resourceModifiers.Length; ++i)
+		{ ResourcesManager.instance.ApplyModifier (resourceModifiers[i]); }
+	}
+
+	public void RemoveEffect ()
+	{
+		for (int i = 0; i < resourceModifiers.Length; ++i)
+		{ ResourcesManager.instance.RemoveModifier (resourceModifiers[i]); }
+	}
 	#endregion
 
 
