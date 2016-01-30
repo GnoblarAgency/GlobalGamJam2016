@@ -15,8 +15,6 @@ public sealed  class GodManager : MonoBehaviour
 	#region PRIVATE VARIABLES
 	/// The currently selected God to which the people are praying
 	private God mActiveGod;
-	/// Effects applied by the active god
-	private List <ResourceModifier> mActiveGodModifiers = new List<ResourceModifier> ();
 	#endregion
 
 
@@ -35,12 +33,12 @@ public sealed  class GodManager : MonoBehaviour
 
 	void Start ()
 	{
-		
+
 	}
 
 	void Update ()
 	{
-		
+
 	}
 	#endregion
 
@@ -49,19 +47,21 @@ public sealed  class GodManager : MonoBehaviour
 	/// Changes the god that the people actively worshipping. This applies new modifiers to resources, removing the last god's modifiers.
 	public void ChangeActiveGod (God god)
 	{
-		foreach (ResourceModifier rm in mActiveGodModifiers)
+		foreach (ResourceModifier rm in god.GetResourceModifiers())
 			ResourcesManager.instance.RemoveModifier (rm);
-		mActiveGodModifiers.Clear ();
 
 		mActiveGod = god;
 
-		foreach (ResourceModifier rm in mActiveGod.GetResourceModifiers())
-		{
+		foreach (ResourceModifier rm in god.GetResourceModifiers())
 			ResourcesManager.instance.ApplyModifier (rm);
-			mActiveGodModifiers.Add (rm);
-		}
+	}
+
+	public God GetActiveGod ()
+	{
+		return mActiveGod;
 	}
 	#endregion
+
 
 
 	#region HELPER FUNCTIONS
