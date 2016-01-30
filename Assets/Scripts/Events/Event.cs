@@ -4,7 +4,6 @@ using System.Collections;
 public abstract class Event : MonoBehaviour
 {
 	#region PROPERTIES
-	public bool isActive { get; private set; }
 	#endregion
 
 	#region PUBLIC VARIABLES
@@ -12,6 +11,7 @@ public abstract class Event : MonoBehaviour
 
 	[TextArea(3, 10)]
 	public string description;
+	public float eventLength;
 
 	public ResourceModifier[] resourceModifiers = new ResourceModifier[0];
 	#endregion
@@ -19,28 +19,19 @@ public abstract class Event : MonoBehaviour
 
 	#region PRIVATE VARIABLES
 	protected float mEventTimer;
-
-	protected float mEventLength;
 	#endregion
 
 
 	#region UNITY EVENTS
-	void OnEnable ()
-	{
-	}
-
 	void Update ()
 	{
-		if (isActive)
+		mEventTimer += Time.deltaTime;
+
+		if (mEventTimer >= eventLength)
 		{
-			mEventTimer += Time.deltaTime;
+			mEventTimer = 0f;
 
-			if (mEventTimer >= mEventLength)
-			{
-				mEventTimer = 0f;
-
-				isActive = false;
-			}
+			RemoveEffect();
 		}
 	}
 	#endregion
@@ -49,12 +40,16 @@ public abstract class Event : MonoBehaviour
 	#region PUBLIC API
 	public void ApplyEffect ()
 	{
-		throw new System.NotImplementedException ();
+		for (int i = 0; i < resourceModifiers.Length; ++i)
+		{ ResourcesManager.instance.ApplyModifier (resourceModifiers[i]); }
 	}
 
 	public void RemoveEffect ()
 	{
-		throw new System.NotImplementedException ();
+		for (int i = 0; i < resourceModifiers.Length; ++i)
+		{ ResourcesManager.instance.RemoveModifier (resourceModifiers[i]); }
+
+		EventsManager.Instance.RemoveEvent (this);
 	}
 	#endregion
 

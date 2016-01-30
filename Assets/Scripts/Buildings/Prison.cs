@@ -8,12 +8,4 @@ public class Prison : Building
 		Init ("Prison");
 	}
 	#endregion
-
-
-	#region PUBLIC API
-	public override void OpenUI() 
-	{
-		UIManager.instance.ShowPrisonScreen();
-	}
-	#endregion
 }

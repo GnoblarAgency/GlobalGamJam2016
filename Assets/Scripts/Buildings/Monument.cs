@@ -22,7 +22,7 @@ public class Monument : Building
 		if (DedicatedGod == null)
 		{ return base.ToString (); }
 
-		return string.Format ("{0} to {1}", DisplayName, DedicatedGod.DisplayName);
+		return string.Format ("{0} to {1}", DisplayName, DedicatedGod.displayName);
 	}
 	#endregion
 }

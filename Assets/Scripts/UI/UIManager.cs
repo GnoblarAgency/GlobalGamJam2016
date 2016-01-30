@@ -16,7 +16,6 @@ public sealed class UIManager : MonoBehaviour
 
 	public GameObject templeUI;
 	public GameObject barracksUI;
-	public GameObject prisonUI;
 	public GameObject farmUI;
 	#endregion
 
@@ -67,11 +66,9 @@ public sealed class UIManager : MonoBehaviour
 		farmUI.SetActive (true);
 	}
 
-	public void ShowPrisonScreen ()
+	public bool IsScreenVisible ()
 	{
-		HideAll();
-
-		prisonUI.SetActive (true);
+		return templeUI.activeSelf || barracksUI.activeSelf || farmUI.activeSelf;
 	}
 	#endregion
 
@@ -84,10 +81,7 @@ public sealed class UIManager : MonoBehaviour
 
 		if (barracksUI)
 		{ barracksUI.SetActive (false); }
-
-		if (prisonUI)
-		{ prisonUI.SetActive (false); }
-
+			
 		if (farmUI)
 		{ farmUI.SetActive (false); }
 	}

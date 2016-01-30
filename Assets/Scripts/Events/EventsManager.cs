@@ -29,7 +29,7 @@ public sealed class EventsManager : MonoBehaviour
 			Instance = this;
 
 			mActiveEvents = new List<Event> ();
-			mAvailableWorldEvents = Resources.LoadAll<Event> ("Events/");
+			mAvailableWorldEvents = Resources.LoadAll<Event> ("Events/World Events");
 		}
 		else
 		{
@@ -41,7 +41,7 @@ public sealed class EventsManager : MonoBehaviour
 	{
 		if (Input.GetKeyUp (KeyCode.C))
 		{
-			Event randomEvent = InstantiateRandomEvent();
+			Event randomEvent = InstantiateEvent(mAvailableWorldEvents[Random.Range (0, mAvailableWorldEvents.Length)]);
 
 			if (randomEvent)
 			{ Debug.LogFormat ("{0} - {1}", randomEvent.displayName, randomEvent.description); }
@@ -51,20 +51,23 @@ public sealed class EventsManager : MonoBehaviour
 
 
 	#region PUBLIC API
-	private Event InstantiateRandomEvent()
+	public Event InstantiateEvent(Event eventPrefab)
 	{
-		if (mAvailableWorldEvents.Length > 0)
-		{
-			Event go = Instantiate (mAvailableWorldEvents[Random.Range (0, mAvailableWorldEvents.Length)]);
+		Event activeEvent = Instantiate (eventPrefab);
 
-			go.transform.SetParent (activeEventsParent);
+		activeEvent.transform.SetParent (activeEventsParent);
 
-			mActiveEvents.Add (go);
+		mActiveEvents.Add (activeEvent);
+		activeEvent.ApplyEffect ();
 
-			return go;
-		}
+		return activeEvent;
+	}
 
-		return null;
+	public void RemoveEvent(Event activeEvent)
+	{
+		mActiveEvents.Remove (activeEvent);
+
+		Destroy(activeEvent.gameObject);
 	}
 	#endregion
 
