@@ -29,20 +29,23 @@ public static class ResourceDefaultValues
 public abstract class Resource 
 {
 	#region CONSTANTS
+	/// The growth per tick offered by this resource type
 	public readonly float BaseGrowth;
 	#endregion
 
 	#region PROPERTIES
 	public string DisplayName { get; private set; }
 
+	/// The growth per tick after applying modifiers.
 	public float ModifiedGrowth { get; protected set; }
+	/// The total amount of this resource that we have.
 	public float TotalAmount { get; protected set; }
 	#endregion
 
 	public Resource (string name, float baseGrowth)
 	{
 		DisplayName = name;
-		BaseGrowth = baseGrowth;
+		BaseGrowth = ModifiedGrowth = baseGrowth;
 	}
 
 	public void ApplyModifier (float value)

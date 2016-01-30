@@ -34,7 +34,7 @@ public sealed class ResourcesManager : MonoBehaviour
 
 	void Start () 
 	{
-
+		Init ();
 	}
 
 	void Update () 
@@ -45,6 +45,25 @@ public sealed class ResourcesManager : MonoBehaviour
 
 
 	#region PUBLIC_FACING API
+	public Resource GetResourceFood ()
+	{
+		return mResources [ResourceNames.FOOD];
+	}
+
+	public Resource GetResourceHappiness ()
+	{
+		return mResources [ResourceNames.HAPPINESS];
+	}
+
+	public Resource GetResourcePopulation ()
+	{
+		return mResources [ResourceNames.POPULATION];
+	}
+
+	public Resource GetResourcePrisoners ()
+	{
+		return mResources [ResourceNames.PRISONERS];
+	}
 	#endregion
 
 
@@ -56,10 +75,12 @@ public sealed class ResourcesManager : MonoBehaviour
 
 	void CreateResourceStore ()
 	{
+
+		Debug.Log ("Creating store");
 		Resource food = new FoodResource ();
 		Resource happiness = new HappinessResource ();
 		Resource population = new PopulationResource ();
-		Resource prisoners = new PopulationResource ();
+		Resource prisoners = new PrisonersResource ();
 
 		mResources.Add (food.DisplayName, food);
 		mResources.Add (happiness.DisplayName, happiness);

@@ -13,6 +13,7 @@ public sealed  class GodManager : MonoBehaviour
 
 
 	#region PRIVATE VARIABLES
+	private Dictionary <string, float> mAppliedModifiers = new Dictionary<string, float> ();
 	#endregion
 
 

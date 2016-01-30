@@ -12,7 +12,7 @@ public sealed class UIManager : MonoBehaviour
 
 
 	#region PUBLIC VARIABLES
-	Text debugOutResources;
+	public Text debugOutResources;
 	#endregion
 
 
@@ -40,7 +40,7 @@ public sealed class UIManager : MonoBehaviour
 
 	void Update () 
 	{
-
+		DebugOutResources();
 	}
 	#endregion
 
@@ -63,10 +63,22 @@ public sealed class UIManager : MonoBehaviour
 		{
 			debugOutResources.text = 
 				"RESOURCES:" + "\n" +
-				"Food: " + 
-				"Happiness: " +
-				"Population" +
-				"Prisoners";
+
+				"Food: " + ResourcesManager.instance.GetResourceFood ().TotalAmount + 
+				" [ " + ResourcesManager.instance.GetResourceFood ().BaseGrowth + 
+				" + " +  (ResourcesManager.instance.GetResourceFood ().ModifiedGrowth - ResourcesManager.instance.GetResourceFood ().BaseGrowth ) + "] \n" +
+
+				"Happiness: " + ResourcesManager.instance.GetResourceHappiness ().TotalAmount +
+				" [ " + ResourcesManager.instance.GetResourceHappiness ().BaseGrowth + 
+				" + " +  (ResourcesManager.instance.GetResourceHappiness ().ModifiedGrowth - ResourcesManager.instance.GetResourceHappiness ().BaseGrowth ) + "] \n" +
+
+				"Population: " + ResourcesManager.instance.GetResourcePopulation ().TotalAmount +
+				" [ " + ResourcesManager.instance.GetResourcePopulation ().BaseGrowth + 
+				" + " +  (ResourcesManager.instance.GetResourcePopulation ().ModifiedGrowth - ResourcesManager.instance.GetResourcePopulation ().BaseGrowth ) + "] \n" +
+
+				"Prisoners: " + ResourcesManager.instance.GetResourcePrisoners ().TotalAmount +
+				" [ " + ResourcesManager.instance.GetResourcePrisoners ().BaseGrowth + 
+				" + " +  (ResourcesManager.instance.GetResourcePrisoners ().ModifiedGrowth - ResourcesManager.instance.GetResourcePrisoners ().BaseGrowth ) + "] \n";
 		}
 	}
 	#endregion
