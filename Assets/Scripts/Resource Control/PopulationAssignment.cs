@@ -33,8 +33,8 @@ public class PopulationAssignment : MonoBehaviour {
 		
 	void Start () 
 	{
-		foodCollecting = new ResourceModifier(ResourceNames.FOOD, DetermineFoodModifier());
-		prisonerCollecting = new ResourceModifier(ResourceNames.PRISONERS, DetermineFoodModifier());
+		foodCollecting = new ResourceModifier(ResourceType.Food, DetermineFoodModifier());
+		prisonerCollecting = new ResourceModifier(ResourceType.Prisoners, DetermineFoodModifier());
 
 		ApplyModifiers();
 	}
@@ -43,8 +43,8 @@ public class PopulationAssignment : MonoBehaviour {
 
 	public void UpdatePopulationAssignment()
 	{
-		foodCollecting.Value = DetermineFoodModifier();
-		prisonerCollecting.Value = DeterminePrisonerModifier();
+		foodCollecting.value = DetermineFoodModifier();
+		prisonerCollecting.value = DeterminePrisonerModifier();
 
 
 	}

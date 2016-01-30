@@ -1,16 +1,17 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+[System.Serializable]
 public class ResourceModifier 
 {
 	#region PUBLIC VARIABLES
-	public string Name;
-	public float Value;
+	public ResourceType resourceType;
+	public float value;
 	#endregion
 
-	public ResourceModifier (string resource, float value)
+	public ResourceModifier (ResourceType type, float modifier)
 	{
-		Name = resource;
-		Value = value;
+		type = type;
+		modifier = modifier;
 	}
 }
