@@ -64,6 +64,10 @@ public abstract class Resource
 	}
 
 
+	public void AddAmount (float amount)
+	{
+		TotalAmount += amount;
+	}
 	public void RemoveAmount (float amount)
 	{
 		TotalAmount -= amount;
@@ -129,6 +133,10 @@ public class FavourResource : Resource
 {
 
 	#region PUBLIC EVENTS
+	//TODO Subscribe to these events to unless the all-loving goodness of your chosen god, 
+	//or their unrelenting wrath. (These will be major events, such as eclipses, plagues etc with
+	//accompanying animations.
+
 	public static event Action Curse = delegate {};
 	public static event Action Neutral = delegate {};
 	public static event Action Blessing = delegate {};
