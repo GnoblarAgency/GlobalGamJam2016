@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 
 #region RESOURCES KEYS
@@ -14,7 +15,7 @@ public static class ResourceNames
 
 
 #region INITIALIZATION VALUES
-public static class ResourceDefaultValues
+public static class ResourceDefaultGrowthValues
 {
 	public const float FOOD = 10;
 	public const float HAPPINESS = 10;
@@ -29,15 +30,15 @@ public static class ResourceDefaultValues
 public abstract class Resource 
 {
 	#region CONSTANTS
-	/// The growth per tick offered by this resource type
+	/// The default growth per tick offered by this resource type
 	public readonly float BaseGrowth;
 	#endregion
 
 	#region PROPERTIES
 	public string DisplayName { get; private set; }
 
-	/// The growth per tick after applying modifiers.
-	public float ModifiedGrowth { get; protected set; }
+	/// The growth modifiers that are currently active for this resource.
+	public List<ResourceModifier> GrowthModifiers { get; protected set; }
 	/// The total amount of this resource that we have.
 	public float TotalAmount { get; protected set; }
 	#endregion
@@ -45,55 +46,74 @@ public abstract class Resource
 	public Resource (string name, float baseGrowth)
 	{
 		DisplayName = name;
-		BaseGrowth = ModifiedGrowth = baseGrowth;
+		BaseGrowth = baseGrowth;
+		GrowthModifiers = new List<ResourceModifier> ();
 	}
 
-	public void ApplyModifier (float value)
+
+	public void ApplyModifier (ResourceModifier modifier)
 	{
-		ModifiedGrowth += value;
+		GrowthModifiers.Add (modifier);
 	}
 
-	public void RemoveModifier (float value)
+	public void RemoveModifier (ResourceModifier modifier)
 	{
-		ModifiedGrowth -= value;
+		GrowthModifiers.Remove (modifier);
 	}
+
+	/// Returns the current total growth value: base growth + modifiers
+	public float GetTotalGrowth ()
+	{
+		return BaseGrowth + GetAdditionalGrowth();	
+	}
+
+	/// Returns the amount of growth offered by the currently applied multipliers, excluding base growth.
+	public float GetAdditionalGrowth ()
+	{
+		float modifierGrowth = 0f;
+		for (int i = 0 ; i < GrowthModifiers.Count ; i++)
+		{ modifierGrowth += GrowthModifiers[i].Value; }
+
+		return modifierGrowth;
+	}
+
 
 	/// Applies the current growth value to the total amount of this resource.
 	public virtual void UpdateResourceTotal ()
 	{
-		TotalAmount += ModifiedGrowth;
+		TotalAmount += GetTotalGrowth();
 		TotalAmount = TotalAmount < 0 ? 0 : TotalAmount;
 	}
 }
 	
 public class FoodResource : Resource
 {
-	public FoodResource (float initialValue = ResourceDefaultValues.FOOD)
+	public FoodResource (float initialValue = ResourceDefaultGrowthValues.FOOD)
 		: base (ResourceNames.FOOD, initialValue) {}
 }
 	
 public class PopulationResource : Resource
 {
-	public PopulationResource (float initialValue = ResourceDefaultValues.POPULATION)
+	public PopulationResource (float initialValue = ResourceDefaultGrowthValues.POPULATION)
 		: base (ResourceNames.POPULATION, initialValue) {}
 }
 
 public class PrisonersResource : Resource
 {
-	public PrisonersResource (float initialValue = ResourceDefaultValues.PRISONERS) 
+	public PrisonersResource (float initialValue = ResourceDefaultGrowthValues.PRISONERS) 
 		: base (ResourceNames.PRISONERS, initialValue) {}
 }
 
 public class HappinessResource : Resource
 {
-	public HappinessResource (float initialValue = ResourceDefaultValues.HAPPINESS)
+	public HappinessResource (float initialValue = ResourceDefaultGrowthValues.HAPPINESS)
 		: base (ResourceNames.HAPPINESS, initialValue) {
 	}
 
 	/// Applies the current growth value to the total amount of this resource.
 	public override void UpdateResourceTotal ()
 	{
-		TotalAmount += ModifiedGrowth;
+		TotalAmount += GetTotalGrowth();
 		TotalAmount = Mathf.Clamp (TotalAmount, 0, 100);
 	}
 }

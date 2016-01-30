@@ -67,12 +67,12 @@ public sealed class ResourcesManager : MonoBehaviour
 	#region PUBLIC_FACING API
 	public void ApplyModifier (ResourceModifier modifier)
 	{
-		mResources[modifier.Name].ApplyModifier(modifier.Value);
+		mResources[modifier.Name].ApplyModifier(modifier);
 	}
 
 	public void RemoveModifier (ResourceModifier modifier)
 	{
-		mResources[modifier.Name].RemoveModifier(modifier.Value);
+		mResources[modifier.Name].RemoveModifier(modifier);
 	}
 
 	public Resource GetResourceFood ()
