@@ -3,10 +3,10 @@ using System.Collections.Generic;
 
 public abstract class Building : MonoBehaviour
 {
-	#region PUBLIC VARIABLES
-	public bool isClickable = true;
+	#region PROPERTIES
+	public bool IsClickable { get; private set; }
 
-	public string displayName;
+	public string DisplayName { get; private set; }
 	#endregion
 
 
@@ -24,9 +24,18 @@ public abstract class Building : MonoBehaviour
 
 
 	#region PUBLIC API
+	public override string ToString ()
+	{
+		return string.Format ("{0}", DisplayName);
+	}
 	#endregion
 
 
 	#region HELPER FUNCTIONS
+	protected void Init (string displayName, bool isClickable = true)
+	{
+		IsClickable = isClickable;
+		DisplayName = displayName;
+	}
 	#endregion
 }

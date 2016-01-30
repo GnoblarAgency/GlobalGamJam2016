@@ -32,12 +32,7 @@ public sealed class UIManager : MonoBehaviour
 			Debug.LogError("There is more than one UIManager in the scene!");
 		}
 	}
-
-	void Start () 
-	{
-
-	}
-
+		
 	void Update () 
 	{
 		DebugOutResources();

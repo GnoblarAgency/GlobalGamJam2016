@@ -1,15 +1,28 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Monument : MonoBehaviour {
+public class Monument : Building
+{
+	#region PROPERTIES
+	public God DedicatedGod { get; set; }
+	#endregion
 
-	// Use this for initialization
-	void Start () {
-	
+
+	#region UNITY EVENTS
+	void Awake ()
+	{
+		Init ("Monument");
 	}
-	
-	// Update is called once per frame
-	void Update () {
-	
+	#endregion
+
+
+	#region PUBLIC API
+	public override string ToString ()
+	{
+		if (DedicatedGod == null)
+		{ return base.ToString (); }
+
+		return string.Format ("{0} to {1}", DisplayName, DedicatedGod.DisplayName);
 	}
+	#endregion
 }

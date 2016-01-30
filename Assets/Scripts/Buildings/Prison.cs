@@ -1,15 +1,11 @@
 ﻿using UnityEngine;
-using System.Collections;
 
-public class Prison : MonoBehaviour {
-
-	// Use this for initialization
-	void Start () {
-	
+public class Prison : Building
+{
+	#region UNITY EVENTS
+	void Awake ()
+	{
+		Init ("Prison");
 	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+	#endregion
 }

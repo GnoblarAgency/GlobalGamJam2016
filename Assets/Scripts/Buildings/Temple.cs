@@ -1,15 +1,11 @@
 ﻿using UnityEngine;
-using System.Collections;
 
-public class eTempl : MonoBehaviour {
-
-	// Use this for initialization
-	void Start () {
-	
+public class Temple : Building
+{
+	#region UNITY EVENTS
+	void Awake ()
+	{
+		Init ("Temple");
 	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+	#endregion
 }

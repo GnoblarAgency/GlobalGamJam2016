@@ -1,15 +1,11 @@
 ﻿using UnityEngine;
-using System.Collections;
 
-public class House : MonoBehaviour {
-
-	// Use this for initialization
-	void Start () {
-	
+public class House : Building
+{
+	#region UNITY EVENTS
+	void Awake ()
+	{
+		Init ("House", false);
 	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+	#endregion
 }

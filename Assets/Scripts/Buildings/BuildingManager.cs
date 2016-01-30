@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class BuildingManager : MonoBehaviour
+public sealed class BuildingManager : MonoBehaviour
 {
 	#region PROPERTIES
 	public static BuildingManager Instance { get; private set; }
@@ -54,10 +54,12 @@ public class BuildingManager : MonoBehaviour
 
 			if (Physics.Raycast(ray, out hit, 10000, Layers.BUILDINGS_MASK))
 			{
-				Building building = hit.collider.gameObject.GetComponent<Building>();
+				Building building = hit.collider.GetComponent<Building>();
+				if (building == null)
+				{ building = hit.collider.GetComponentInParent<Building> (); }
 
-				Debug.LogFormat("Clicked on {0} - Is building clickable? {1}", building.displayName, building.isClickable);
-				if (building.isClickable)
+				Debug.LogFormat("Clicked on {0} - Is building clickable? {1}", building, building.IsClickable);
+				if (building.IsClickable)
 				{
 					//TODO do amazing stuff!
 				}
