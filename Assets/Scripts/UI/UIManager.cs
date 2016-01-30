@@ -13,6 +13,11 @@ public sealed class UIManager : MonoBehaviour
 
 	#region PUBLIC VARIABLES
 	public Text debugOutResources;
+
+	public GameObject templeUI;
+	public GameObject barracksUI;
+	public GameObject prisonUI;
+	public GameObject farmUI;
 	#endregion
 
 
@@ -41,14 +46,50 @@ public sealed class UIManager : MonoBehaviour
 
 
 	#region PUBLIC_FACING API
+	public void ShowTempleScreen ()
+	{
+		HideAll();
 
+		templeUI.SetActive (true);
+	}
+
+	public void ShowBarracksScreen ()
+	{
+		HideAll();
+
+		barracksUI.SetActive (true);
+	}
+
+	public void ShowFarmScreen ()
+	{
+		HideAll();
+
+		farmUI.SetActive (true);
+	}
+
+	public void ShowPrisonScreen ()
+	{
+		HideAll();
+
+		prisonUI.SetActive (true);
+	}
 	#endregion
 
 
 	#region HELPER FUNCTIONS
 	void HideAll ()
 	{
+		if (templeUI)
+		{ templeUI.SetActive (false); }
 
+		if (barracksUI)
+		{ barracksUI.SetActive (false); }
+
+		if (prisonUI)
+		{ prisonUI.SetActive (false); }
+
+		if (farmUI)
+		{ farmUI.SetActive (false); }
 	}
 
 	#endregion

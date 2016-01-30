@@ -8,4 +8,12 @@ public class Barracks : Building
 		Init ("Barracks");
 	}
 	#endregion
+
+
+	#region PUBLIC API
+	public override void OpenUI() 
+	{
+		UIManager.instance.ShowBarracksScreen();
+	}
+	#endregion
 }

@@ -14541,6 +14541,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   debugOutResources: {fileID: 0}
+  templeUI: {fileID: 889601480}
+  barracksUI: {fileID: 0}
+  prisonUI: {fileID: 0}
+  farmUI: {fileID: 0}
 --- !u!1 &1460059286
 GameObject:
   m_ObjectHideFlags: 0
