@@ -47,7 +47,7 @@ public sealed class BuildingManager : MonoBehaviour
 	#region HELPER FUNCTIONS
 	void SelectBuilding (Vector2 position)
 	{
-		if (true) //TODO replace with UI not already displaying some UI
+		if (!UIManager.instance.IsScreenVisible())
 		{
 			Ray ray = Camera.main.ScreenPointToRay(position);
 			RaycastHit hit;
