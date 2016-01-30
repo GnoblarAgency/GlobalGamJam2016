@@ -40,11 +40,11 @@ public class StatisticsEngine
 		happiness = (HappinessResource)ResourcesManager.instance.GetResourceHappiness ();
 
 		//create blank modifiers modifiers
-		foodModifier = new ResourceModifier (ResourceNames.FOOD, 0);
-		favourModifier = new ResourceModifier (ResourceNames.FAVOUR, 0);
-		prisonersModifier = new ResourceModifier (ResourceNames.PRISONERS, 0);
-		populationModifier = new ResourceModifier (ResourceNames.POPULATION, 0);
-		happinessModifier = new ResourceModifier (ResourceNames.HAPPINESS, 0);
+		foodModifier = new ResourceModifier (ResourceType.Food, 0);
+		favourModifier = new ResourceModifier (ResourceType.Favour, 0);
+		prisonersModifier = new ResourceModifier (ResourceType.Prisoners, 0);
+		populationModifier = new ResourceModifier (ResourceType.Population, 0);
+		happinessModifier = new ResourceModifier (ResourceType.Happiness, 0);
 
 		//add these to the respective resources so that we can affect the growth rates
 		food.ApplyModifier (foodModifier);

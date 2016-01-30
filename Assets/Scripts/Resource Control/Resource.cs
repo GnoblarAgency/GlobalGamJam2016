@@ -4,17 +4,14 @@ using System.Collections;
 using System.Collections.Generic;
 
 
-#region RESOURCES KEYS
-public static class ResourceNames 
+public enum ResourceType
 {
-	public const string FOOD = "Food";
-	public const string HAPPINESS = "Happiness";
-	public const string POPULATION = "Population";
-	public const string PRISONERS = "Prisoners";
-	public const string FAVOUR = "Favour";
+	Food,
+	Happiness,
+	Population,
+	Prisoners,
+	Favour
 }
-#endregion
-
 
 #region RESOURCES
 /// A base class in order to represent our various resource types. Each contains a base growth value as well as an additional growth modifier.
@@ -76,7 +73,7 @@ public abstract class Resource
 	{
 		float modifierGrowth = 0f;
 		for (int i = 0 ; i < GrowthModifiers.Count ; i++)
-		{ modifierGrowth += GrowthModifiers[i].Value; }
+		{ modifierGrowth += GrowthModifiers[i].value; }
 
 		return modifierGrowth;
 	}
@@ -93,25 +90,25 @@ public abstract class Resource
 public class FoodResource : Resource
 {
 	public FoodResource (float baseAmount = 10, float baseGrowth = 10)
-		: base (ResourceNames.FOOD, baseAmount, baseGrowth) {}
+		: base ("Food", baseAmount, baseGrowth) {}
 }
 	
 public class PopulationResource : Resource
 {
 	public PopulationResource (float baseAmount = 5, float baseGrowth = 0)
-		: base (ResourceNames.POPULATION, baseAmount, baseGrowth) {}
+		: base ("Population", baseAmount, baseGrowth) {}
 }
 
 public class PrisonersResource : Resource
 {
 	public PrisonersResource (float baseAmount = 0, float baseGrowth = 0)
-		: base (ResourceNames.PRISONERS, baseAmount, baseGrowth) {}
+		: base ("Prisoners", baseAmount, baseGrowth) {}
 }
 
 public class HappinessResource : Resource
 {
 	public HappinessResource (float baseAmount = 60, float baseGrowth = 0)
-		: base (ResourceNames.HAPPINESS, baseAmount, baseGrowth) {}
+		: base ("Happiness", baseAmount, baseGrowth) {}
 
 	/// Applies the current growth value to the total amount of this resource.
 	public override void UpdateResourceTotal ()
@@ -136,7 +133,7 @@ public class FavourResource : Resource
 	#endregion
 
 	public FavourResource (float baseAmount = 5, float baseGrowth = 0)
-		: base (ResourceNames.FAVOUR, baseAmount, baseGrowth) {}
+		: base ("Favour", baseAmount, baseGrowth) {}
 
 	/// Applies the current growth value to the total amount of this resource.
 	public override void UpdateResourceTotal ()

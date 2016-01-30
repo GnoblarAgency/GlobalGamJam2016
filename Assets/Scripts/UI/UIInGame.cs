@@ -4,10 +4,10 @@ using UnityEngine.UI;
 public class UIInGame : MonoBehaviour
 {
 	#region CONSTANTS
-	public const string POPULATION_FORMAT 	= "POPULATION - {0} ({1})";
-	public const string HAPPINESS_FORMAT 	= "HAPPINESS - {0} ({1})";
-	public const string FOOD_FORMAT 		= "FOOD - {0} ({1})";
-	public const string PRISONERS_FORMAT 	= "PRISONERS - {0} ({1})";
+	public const string POPULATION_FORMAT 	= "POPULATION\t {0:0} ({1:0})";
+	public const string HAPPINESS_FORMAT 	= "HAPPINESS\t\t {0:0} ({1:0})";
+	public const string FOOD_FORMAT 		= "FOOD\t\t\t\t {0:0} ({1:0})";
+	public const string PRISONERS_FORMAT 	= "PRISONERS \t {0:0} ({1:0})";
 	#endregion
 
 
