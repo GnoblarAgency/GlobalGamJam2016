@@ -9,12 +9,16 @@ public class CitizenAI : MonoBehaviour {
 	public float walkRadius = 100;
 
 	// Use this for initialization
-	IEnumerator Start () {
+	void Start () 
+	{
 		agent = GetComponent<NavMeshAgent>();
 		anim = GetComponent<Animator>();
 
-		Roam();
+		//StartCoroutine(AILoop());
+	}
 
+	IEnumerator AILoop()
+	{
 		while (true)
 		{
 			anim.SetFloat("agentSpeed",agent.velocity.magnitude);
@@ -23,10 +27,7 @@ public class CitizenAI : MonoBehaviour {
 				yield return whatNext();
 			}
 		}
-
 	}
-
-
 
 
 	void Roam()
