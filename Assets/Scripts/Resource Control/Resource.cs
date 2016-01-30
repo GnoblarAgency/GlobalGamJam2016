@@ -39,8 +39,6 @@ public abstract class Resource
 		BaseGrowth = baseGrowth;
 		BaseAmount = TotalAmount = baseAmount;
 		GrowthModifiers = new List<ResourceModifier> ();
-
-		Debug.Log ("Resource: growth=" + BaseGrowth + " amount=" + BaseAmount);
 	}
 
 
