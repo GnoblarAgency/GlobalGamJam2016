@@ -55,6 +55,12 @@ public abstract class Resource
 		GrowthModifiers.Remove (modifier);
 	}
 
+
+	public void RemoveAmount (float amount)
+	{
+		TotalAmount -= amount;
+	}
+
 	/// Returns the current total growth value: base growth + modifiers
 	public float GetTotalGrowth ()
 	{

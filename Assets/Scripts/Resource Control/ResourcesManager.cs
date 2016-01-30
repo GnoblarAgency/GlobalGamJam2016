@@ -16,6 +16,7 @@ public sealed class ResourcesManager : MonoBehaviour
 
 
 	#region PUBLIC VARIABLES
+	public const float TICK_DELAY = 10f;
 	#endregion
 
 
@@ -23,7 +24,7 @@ public sealed class ResourcesManager : MonoBehaviour
 	private StatsCalculator mStatsCalculator = new StatsCalculator ();
 	private Dictionary <string, Resource> mResources = new Dictionary <string, Resource> ();
 
-	private const float TICK_DELAY = 10f;
+
 	private float mTickTimer;
 	#endregion
 
@@ -54,7 +55,9 @@ public sealed class ResourcesManager : MonoBehaviour
 		{
 			mTickTimer = 0f;
 
+
 			UpdateResources ();
+			PopulationAssignment.instance.UpdatePopulationAssignment();
 			mStatsCalculator.UpdateStats ();
 
 			//event
