@@ -14,7 +14,7 @@ public enum ResourceType
 }
 
 #region RESOURCES
-/// A base class in order to represent our various resource types
+/// A base class in order to represent our various resource types. Each contains a base growth value as well as an additional growth modifier.
 public abstract class Resource 
 {
 	#region CONSTANTS
@@ -125,10 +125,11 @@ public class FavourResource : Resource
 	//TODO Subscribe to these events to unless the all-loving goodness of your chosen god, 
 	//or their unrelenting wrath. (These will be major events, such as eclipses, plagues etc with
 	//accompanying animations.
-
+	public static event Action Wrath = delegate {};
 	public static event Action Curse = delegate {};
 	public static event Action Neutral = delegate {};
 	public static event Action Blessing = delegate {};
+	public static event Action Delight = delegate {};
 	#endregion
 
 	public FavourResource (float baseAmount = 5, float baseGrowth = 0)
@@ -138,6 +139,18 @@ public class FavourResource : Resource
 	public override void UpdateResourceTotal ()
 	{
 		TotalAmount += GetTotalGrowth();
+
+		//do some godly events based on their favour!
+		if (TotalAmount <= -10)
+		{ Wrath(); }
+		else if (TotalAmount <= -5)
+		{ Curse(); }
+		else if (TotalAmount <= 5)
+		{ Neutral(); }
+		else if (TotalAmount <= 10)
+		{ Blessing(); }
+		else 
+		{ Delight(); }
 	}
 }
 
