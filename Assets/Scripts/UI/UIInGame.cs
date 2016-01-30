@@ -4,18 +4,19 @@ using UnityEngine.UI;
 public class UIInGame : MonoBehaviour
 {
 	#region CONSTANTS
-	public const string POPULATION_FORMAT 	= "POPULATION\t {0:0} ({1:0})";
-	public const string HAPPINESS_FORMAT 	= "HAPPINESS\t\t {0:0} ({1:0})";
-	public const string FOOD_FORMAT 		= "FOOD\t\t\t\t {0:0} ({1:0})";
-	public const string PRISONERS_FORMAT 	= "PRISONERS \t {0:0} ({1:0})";
+	public const string NUMBER_FORMAT 	= "{0:0}";
 	#endregion
 
 
 	#region PUBLIC VARIABLES
 	public Text population;
-	public Text happiness;
 	public Text food;
 	public Text prisoners;
+
+	public Sprite[] happinessIcons = new Sprite[3];
+
+	public Scrollbar happiness;
+	public Image scrollIcon;
 	#endregion
 
 
@@ -38,10 +39,24 @@ public class UIInGame : MonoBehaviour
 
 	void Update ()
 	{
-		population.text = string.Format (POPULATION_FORMAT, mPopulation.TotalAmount, mPopulation.GetTotalGrowth ());
-		happiness.text = string.Format (HAPPINESS_FORMAT, mHappiness.TotalAmount, mHappiness.GetTotalGrowth ());
-		food.text = string.Format (FOOD_FORMAT, mFood.TotalAmount, mFood.GetTotalGrowth ());
-		prisoners.text = string.Format (PRISONERS_FORMAT, mPrisoners.TotalAmount, mPrisoners.GetTotalGrowth ());
+		population.text = string.Format (NUMBER_FORMAT, mPopulation.TotalAmount);
+		food.text = string.Format (NUMBER_FORMAT, mFood.TotalAmount);
+		prisoners.text = string.Format (NUMBER_FORMAT, mPrisoners.TotalAmount);
+
+		happiness.value = mHappiness.TotalAmount / 100;
+
+		if (mHappiness.TotalAmount < 40)
+		{
+			scrollIcon.sprite = happinessIcons[0];
+		}
+		else if (mHappiness.TotalAmount < 60)
+		{
+			scrollIcon.sprite = happinessIcons[1];
+		}
+		else if (mHappiness.TotalAmount < 100)
+		{
+			scrollIcon.sprite = happinessIcons[2];
+		}
 	}
 	#endregion
 }

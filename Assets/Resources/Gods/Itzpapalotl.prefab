@@ -42,6 +42,7 @@ MonoBehaviour:
   displayName: Itzpapalotl
   title: Goddess of Sacrifice
   biography: 
+  image: {fileID: 21300000, guid: 7b832a49da23148ab9e82f6ad2006d44, type: 3}
   resourceModifiers:
   - resourceType: 0
     value: 2
@@ -51,6 +52,10 @@ MonoBehaviour:
     value: 2
   - resourceType: 3
     value: 2
+  curses:
+  - {fileID: 11463334, guid: 6721f48777caf4ac7ba64af41aa087b5, type: 2}
+  blessings:
+  - {fileID: 11487706, guid: c3f5a13b4242e48e4b1c00e7823f4e86, type: 2}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
@@ -58,6 +63,14 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: curses.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: blessings.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: resourceModifiers.Array.size
       value: 4

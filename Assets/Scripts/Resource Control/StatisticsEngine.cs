@@ -4,9 +4,6 @@ using System.Collections;
 /// The brain of the resource system. Calculates the current growth values for
 public class StatisticsEngine 
 {
-	#region CONSTANTS
-	const float POP_DIE_BACK_DUE_TO_FOOD_GROWTH_MODI = 2;
-	#endregion
 
 	#region RESOURCES
 	//our resource types, laid out here for easy-peasy referency goodness

@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections.Generic;
 
 public class God : MonoBehaviour
@@ -10,10 +11,14 @@ public class God : MonoBehaviour
 	[TextArea (3, 10)]
 	public string biography;
 
+	public Sprite image;
+
 	public ResourceModifier[] resourceModifiers = new ResourceModifier[0]; 
 
 	public Curse[] curses = new Curse[0];
 	public Blessing[] blessings = new Blessing[0];
+
+
 	#endregion
 
 
