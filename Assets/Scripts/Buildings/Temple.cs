@@ -8,4 +8,12 @@ public class Temple : Building
 		Init ("Temple");
 	}
 	#endregion
+
+
+	#region PUBLIC API
+	public override void OpenUI() 
+	{
+		UIManager.instance.ShowTempleScreen();
+	}
+	#endregion
 }
