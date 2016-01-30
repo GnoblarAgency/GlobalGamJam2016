@@ -120,6 +120,33 @@ public sealed class UIManager : MonoBehaviour
 				"Prisoners: " + ResourcesManager.instance.GetResourcePrisoners ().TotalAmount +
 				" [ " + ResourcesManager.instance.GetResourcePrisoners ().BaseGrowth + 
 				" + " +  (ResourcesManager.instance.GetResourcePrisoners ().GetTotalGrowth() - ResourcesManager.instance.GetResourcePrisoners ().BaseGrowth ) + "] \n";
+
+			string info = "";
+			info += "\nFOOD: " + ResourcesManager.instance.GetResourceFood ().GrowthModifiers.Count + "\n";
+			foreach (ResourceModifier rm in ResourcesManager.instance.GetResourceFood ().GrowthModifiers )
+			{
+				info += rm.value + "\n";
+			}
+
+			info += "\nHAPPINESS: " + ResourcesManager.instance.GetResourceHappiness ().GrowthModifiers.Count + "\n";
+			foreach (ResourceModifier rm in ResourcesManager.instance.GetResourceHappiness ().GrowthModifiers )
+			{
+				info += rm.value + "\n";
+			}
+
+			info += "\nPOPULATION: " + ResourcesManager.instance.GetResourcePopulation ().GrowthModifiers.Count + "\n";
+			foreach (ResourceModifier rm in ResourcesManager.instance.GetResourcePopulation ().GrowthModifiers )
+			{
+				info += rm.value + "\n";
+			}
+
+			info += "\nPRISONERS: " + ResourcesManager.instance.GetResourcePrisoners ().GrowthModifiers.Count + "\n";
+			foreach (ResourceModifier rm in ResourcesManager.instance.GetResourcePrisoners ().GrowthModifiers )
+			{
+				info += rm.value + "\n";
+			}
+
+			debugOutResources.text += info;
 		}
 	}
 	#endregion

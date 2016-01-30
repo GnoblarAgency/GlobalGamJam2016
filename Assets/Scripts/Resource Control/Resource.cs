@@ -19,9 +19,9 @@ public abstract class Resource
 {
 	#region CONSTANTS
 	/// The default growth per tick offered by this resource type
-	public readonly float BaseGrowth;
+	public float BaseGrowth;
 	/// The inital number of resources that we start
-	public readonly float BaseAmount;
+	public float BaseAmount;
 	#endregion
 
 	#region PROPERTIES
@@ -37,39 +37,43 @@ public abstract class Resource
 	{
 		DisplayName = name;
 		BaseGrowth = baseGrowth;
-		BaseAmount = baseAmount;
+		BaseAmount = TotalAmount = baseAmount;
 		GrowthModifiers = new List<ResourceModifier> ();
+
+		Debug.Log ("Resource: growth=" + BaseGrowth + " amount=" + BaseAmount);
 	}
 
 
-	public void ApplyModifier (ResourceModifier modifier)
+	public virtual void ApplyModifier (ResourceModifier modifier)
 	{
 		GrowthModifiers.Add (modifier);
 	}
 
-	public void RemoveModifier (ResourceModifier modifier)
+	public virtual void RemoveModifier (ResourceModifier modifier)
 	{
 		GrowthModifiers.Remove (modifier);
 	}
 
 
-	public void AddAmount (float amount)
+	public virtual void AddAmount (float amount)
 	{
 		TotalAmount += amount;
 	}
-	public void RemoveAmount (float amount)
+	public virtual void RemoveAmount (float amount)
 	{
 		TotalAmount -= amount;
+		TotalAmount = TotalAmount < 0 ? 0 : TotalAmount;
 	}
 
+
 	/// Returns the current total growth value: base growth + modifiers
-	public float GetTotalGrowth ()
+	public virtual float GetTotalGrowth ()
 	{
 		return BaseGrowth + GetAdditionalGrowth();	
 	}
 
 	/// Returns the amount of growth offered by the currently applied multipliers, excluding base growth.
-	public float GetAdditionalGrowth ()
+	public virtual float GetAdditionalGrowth ()
 	{
 		float modifierGrowth = 0f;
 		for (int i = 0 ; i < GrowthModifiers.Count ; i++)
@@ -82,7 +86,7 @@ public abstract class Resource
 	/// Applies the current growth value to the total amount of this resource.
 	public virtual void UpdateResourceTotal ()
 	{
-		TotalAmount += GetTotalGrowth();
+		AddAmount (GetTotalGrowth());
 		TotalAmount = TotalAmount < 0 ? 0 : TotalAmount;
 	}
 }
@@ -97,6 +101,14 @@ public class PopulationResource : Resource
 {
 	public PopulationResource (float baseAmount = 5, float baseGrowth = 0)
 		: base ("Population", baseAmount, baseGrowth) {}
+
+	public override void AddAmount (float amount)
+	{
+		//don't increase more than 10% of itself
+		float tenthOfPopulation = TotalAmount/10f;
+		amount = Mathf.Clamp (amount, 0, tenthOfPopulation);
+		base.AddAmount (amount);
+	}
 }
 
 public class PrisonersResource : Resource
@@ -110,10 +122,30 @@ public class HappinessResource : Resource
 	public HappinessResource (float baseAmount = 60, float baseGrowth = 0)
 		: base ("Happiness", baseAmount, baseGrowth) {}
 
+	public override void AddAmount (float amount)
+	{
+		//don't increase more than 5% of itself
+		float twentiethOfPopulation = TotalAmount/20f;
+		amount = Mathf.Clamp (amount, 0, twentiethOfPopulation);
+		base.AddAmount (amount);
+	}
+
+	/// Returns the amount of growth offered by the currently applied multipliers, excluding base growth.
+	public override float GetAdditionalGrowth ()
+	{
+		float modifierGrowth = 0f;
+		for (int i = 0 ; i < GrowthModifiers.Count ; i++)
+		{ modifierGrowth += GrowthModifiers[i].value; }
+
+		modifierGrowth = modifierGrowth > 5 ? 5 : modifierGrowth;
+
+		return modifierGrowth;
+	}
+
 	/// Applies the current growth value to the total amount of this resource.
 	public override void UpdateResourceTotal ()
 	{
-		TotalAmount += GetTotalGrowth();
+		AddAmount (GetTotalGrowth());
 		TotalAmount = Mathf.Clamp (TotalAmount, 0, 100);
 	}
 }
