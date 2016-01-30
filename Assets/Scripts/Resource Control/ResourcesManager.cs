@@ -1,9 +1,14 @@
 ﻿using UnityEngine;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 
 public sealed class ResourcesManager : MonoBehaviour
 {
+
+	#region PUBLIC EVENTS
+	public static event Action OnTick = delegate {};
+	#endregion
 
 	#region PROPERTIES
 	public static ResourcesManager instance { get; private set; }
@@ -15,6 +20,7 @@ public sealed class ResourcesManager : MonoBehaviour
 
 
 	#region PRIVATE VARIABLES
+	private StatsCalculator mStatsCalculator = new StatsCalculator ();
 	private Dictionary <string, Resource> mResources = new Dictionary <string, Resource> ();
 
 	private const float TICK_DELAY = 10f;
@@ -47,7 +53,12 @@ public sealed class ResourcesManager : MonoBehaviour
 		if (mTickTimer >= TICK_DELAY)
 		{
 			mTickTimer = 0f;
+
 			UpdateResources ();
+			mStatsCalculator.UpdateStats ();
+
+			//event
+			OnTick ();
 		}
 	}
 	#endregion
