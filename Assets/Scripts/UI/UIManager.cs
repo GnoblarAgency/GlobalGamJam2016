@@ -17,6 +17,7 @@ public sealed class UIManager : MonoBehaviour
 	public GameObject templeUI;
 	public GameObject barracksUI;
 	public GameObject farmUI;
+	public UIEventBox eventBox; 
 	#endregion
 
 
@@ -47,23 +48,31 @@ public sealed class UIManager : MonoBehaviour
 	#region PUBLIC_FACING API
 	public void ShowTempleScreen ()
 	{
-		HideAll();
+		HideAll ();
 
 		templeUI.SetActive (true);
 	}
 
 	public void ShowBarracksScreen ()
 	{
-		HideAll();
+		HideAll ();
 
 		barracksUI.SetActive (true);
 	}
 
 	public void ShowFarmScreen ()
 	{
-		HideAll();
+		HideAll ();
 
 		farmUI.SetActive (true);
+	}
+
+	public void ShowEventScreen (Event activeEvent)
+	{
+		HideAll ();
+
+		eventBox.gameObject.SetActive (true);
+		eventBox.SetDetails (null, activeEvent.displayName, activeEvent.description);
 	}
 
 	public bool IsScreenVisible ()
@@ -84,6 +93,9 @@ public sealed class UIManager : MonoBehaviour
 			
 		if (farmUI)
 		{ farmUI.SetActive (false); }
+
+		if (eventBox)
+		{ eventBox.gameObject.SetActive (false); }
 	}
 
 	#endregion
