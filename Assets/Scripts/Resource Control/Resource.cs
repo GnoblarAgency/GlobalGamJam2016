@@ -4,6 +4,14 @@ using System.Collections;
 using System.Collections.Generic;
 
 
+public enum ResourceType
+{
+	Food,
+	Happiness,
+	Population,
+	Prisoners
+}
+
 #region RESOURCES KEYS
 public static class ResourceNames 
 {
