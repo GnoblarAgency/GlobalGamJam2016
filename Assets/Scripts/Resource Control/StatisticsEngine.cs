@@ -76,7 +76,7 @@ public class StatisticsEngine
 		bool tooLittleFood = remainder < 0 ? true : false;
 
 		remainder = Mathf.Abs (remainder);
-		float percentOfPopDead = (remainder / population) * 100;
+		float percentOfFoodToPop = (remainder / population.TotalAmount) * 100;
 
 		//kill off populous and reverse growth, decrease happiness and reverse growth.
 		if (tooLittleFood)
@@ -84,16 +84,20 @@ public class StatisticsEngine
 			//people with no food die
 			population.RemoveAmount ( remainder );
 			//affect growth by 1/2 amount of deaths
-			populationModifier.Value = - (remainder / 2);
+			populationModifier.value = - (remainder / 2);
 
-			happiness.RemoveAmount ( percentOfPopDead );
-			happinessModifier.Value = - percentOfPopDead;
+			happiness.RemoveAmount ( percentOfFoodToPop );
+			happinessModifier.value = - percentOfFoodToPop;
 		}
 		//increase happiness and growth, and increase populous and growth
 		else
 		{
-			populationModifier.Value = (remainder / 2);
-			happinessModifier.RemoveAmount ();
+			//affect growth by 1/2 amount of surplus food
+			populationModifier.value = (remainder / 2);
+
+			//increase happiness and hapiness growth by percentage of surplus food compared to population.
+			happiness.AddAmount ( percentOfFoodToPop );
+			happinessModifier.value = percentOfFoodToPop;
 		}
 	}
 }
