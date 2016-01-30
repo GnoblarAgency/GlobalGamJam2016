@@ -72,7 +72,9 @@ public class CameraMotion : MonoBehaviour {
 		CurrentZoom = Mathf.Clamp(CurrentZoom,ZoomRange.x,ZoomRange.y);
 		Vector3 temp = new Vector3 (transform.position.x, transform.position.y - (transform.position.y - (InitPos.y + CurrentZoom)) * 0.1f, transform.position.z);
 		transform.position = temp;
-	//	transform.eulerAngles.x -= (transform.eulerAngles.x - (InitRotation.x + CurrentZoom * ZoomRotation)) * 0.1f;
+		temp = new Vector3(transform.eulerAngles.x -(transform.eulerAngles.x - (InitRotation.x + CurrentZoom * ZoomRotation) * 0.1f), transform.eulerAngles.y, transform.eulerAngles.z);
+
+		transform.eulerAngles = temp;
 
 	}
 }
