@@ -64,11 +64,7 @@ public abstract class Resource
 	/// Returns the current total growth value: base growth + modifiers
 	public float GetTotalGrowth ()
 	{
-		float modifierGrowth = 0f;
-		for (int i = 0 ; i < GrowthModifiers.Count ; i++)
-		{ modifierGrowth += GrowthModifiers[i].Value; }
-
-		return BaseGrowth + modifierGrowth;	
+		return BaseGrowth + GetAdditionalGrowth();	
 	}
 
 	/// Returns the amount of growth offered by the currently applied multipliers, excluding base growth.
@@ -85,9 +81,7 @@ public abstract class Resource
 	/// Applies the current growth value to the total amount of this resource.
 	public virtual void UpdateResourceTotal ()
 	{
-		for (int i = 0 ; i < GrowthModifiers.Count ; i++)
-		{ TotalAmount += GrowthModifiers[i].Value; }
-
+		TotalAmount += GetTotalGrowth();
 		TotalAmount = TotalAmount < 0 ? 0 : TotalAmount;
 	}
 }

@@ -38,10 +38,10 @@ public class UIInGame : MonoBehaviour
 
 	void Update ()
 	{
-		population.text = string.Format (POPULATION_FORMAT, mPopulation.TotalAmount, mPopulation.GrowthModifiers);
-		happiness.text = string.Format (HAPPINESS_FORMAT, mHappiness.TotalAmount, mHappiness.GrowthModifiers);
-		food.text = string.Format (FOOD_FORMAT, mFood.TotalAmount, mFood.GrowthModifiers);
-		prisoners.text = string.Format (PRISONERS_FORMAT, mPrisoners.TotalAmount, mPrisoners.GrowthModifiers);
+		population.text = string.Format (POPULATION_FORMAT, mPopulation.TotalAmount, mPopulation.GetTotalGrowth ());
+		happiness.text = string.Format (HAPPINESS_FORMAT, mHappiness.TotalAmount, mHappiness.GetTotalGrowth ());
+		food.text = string.Format (FOOD_FORMAT, mFood.TotalAmount, mFood.GetTotalGrowth ());
+		prisoners.text = string.Format (PRISONERS_FORMAT, mPrisoners.TotalAmount, mPrisoners.GetTotalGrowth ());
 	}
 	#endregion
 }
