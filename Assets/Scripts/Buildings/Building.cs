@@ -7,18 +7,33 @@ public abstract class Building : MonoBehaviour
 	public bool IsClickable { get; private set; }
 
 	public string DisplayName { get; private set; }
+
+	public float CostToBuild {get ; private set; }
 	#endregion
 
 
 	#region PROTECTED VARIABLES
-	protected Dictionary<string, float> mResourceModifiers;
+	protected List<ResourceModifier> mResourceModifiers = new List<ResourceModifier> ();
 	#endregion
 
 
 	#region UNITY EVENTS
 	void Awake ()
 	{
-		mResourceModifiers = new Dictionary<string, float> ();
+
+	}
+
+	void OnDisable ()
+	{
+		//clean up any applied modifiers
+		if (mResourceModifiers != null)
+		{
+			foreach(ResourceModifier rm in mResourceModifiers)
+			{
+				ResourcesManager.instance.RemoveModifier (rm);
+			}
+			mResourceModifiers.Clear ();
+		}
 	}
 	#endregion
 

@@ -11,7 +11,7 @@ public class ResourceModifier
 
 	public ResourceModifier (ResourceType type, float modifier)
 	{
-		type = type;
+		resourceType = type;
 		value = modifier;
 	}
 }

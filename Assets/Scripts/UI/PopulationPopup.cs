@@ -43,7 +43,7 @@ public class PopulationPopup : MonoBehaviour {
 				pop.prisonerAssignment = prisonerSlider.value;
 			}
 
-		//pop.UpdatePopulationAssignment ();
+		pop.UpdatePopulationAssignment ();
 
 	}	
 	

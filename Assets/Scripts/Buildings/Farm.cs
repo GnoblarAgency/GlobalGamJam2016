@@ -6,6 +6,14 @@ public class Farm : Building
 	void Awake ()
 	{
 		Init ("Farm", true);
+		CostToBuild = 600;
+	}
+
+	void OnEnable ()
+	{
+		ResourceModifier modifier = new ResourceModifier ( ResourceType.Food , 5f);
+		ResourcesManager.instance.ApplyModifier (modifier);
+		mResourceModifiers.Add (modifier);
 	}
 	#endregion
 
