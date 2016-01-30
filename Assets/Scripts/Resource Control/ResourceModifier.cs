@@ -3,8 +3,10 @@ using System.Collections;
 
 public class ResourceModifier 
 {
-	public string Name { get; set; }
-	public float Value { get; set; }
+	#region PUBLIC VARIABLES
+	public string Name;
+	public float Value;
+	#endregion
 
 	public ResourceModifier (string resource, float value)
 	{
