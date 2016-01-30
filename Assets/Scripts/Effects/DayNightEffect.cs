@@ -12,9 +12,9 @@ public class DayNightEffect : MonoBehaviour {
 	void Update () 
 	{
 		
-		daytime += Time.deltaTime*reverse;
+		daytime += Time.deltaTime * reverse;
 
-		dayLight.intensity = Mathf.Min( daytime, 1.5f); 
+		dayLight.intensity = Mathf.Min(daytime, 1.5f); 
 
 		if (daytime >= ResourcesManager.TICK_DELAY/2.0f)
 		{

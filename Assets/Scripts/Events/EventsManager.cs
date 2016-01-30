@@ -67,10 +67,12 @@ public sealed class EventsManager : MonoBehaviour
 	{
 		Event activeEvent = Instantiate (eventPrefab);
 
-		activeEvent.transform.SetParent (activeEventsParent);
+		activeEvent.transform.SetParent (activeEventsParent, false);
 
 		mActiveEvents.Add (activeEvent);
 		activeEvent.ApplyEffect ();
+
+		UIManager.instance.ShowEventScreen (activeEvent);
 
 		return activeEvent;
 	}
