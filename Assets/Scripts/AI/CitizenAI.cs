@@ -19,12 +19,13 @@ public class CitizenAI : MonoBehaviour {
 
 	IEnumerator AILoop()
 	{
-		//Roam();
+		Roam();
 		while (true)
 		{
+			yield return new WaitForSeconds(0.2f);
 		
 			anim.SetFloat("agentSpeed",agent.velocity.magnitude);
-			if (agent.remainingDistance < 1)
+			if (agent.remainingDistance < 2)
 			{
 				yield return StartCoroutine(whatNext());
 			}
@@ -44,7 +45,6 @@ public class CitizenAI : MonoBehaviour {
 
 	private IEnumerator whatNext()
 	{
-		anim.SetFloat("agentSpeed",agent.velocity.magnitude);
 		float choice = Random.Range(0.0f, 1.0f);
 
 		if (choice <= 0.5f)
