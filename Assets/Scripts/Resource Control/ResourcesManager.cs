@@ -45,24 +45,34 @@ public sealed class ResourcesManager : MonoBehaviour
 
 
 	#region PUBLIC_FACING API
+	public void ApplyModifier (ResourceModifier modifier)
+	{
+		mResources[modifier.Name].ApplyModifier(modifier.Value);
+	}
+
+	public void RemoveModifier (ResourceModifier modifier)
+	{
+		mResources[modifier.Name].RemoveModifier(modifier.Value);
+	}
+
 	public Resource GetResourceFood ()
 	{
-		return mResources [ResourceNames.FOOD];
+		return mResources[ResourceNames.FOOD];
 	}
 
 	public Resource GetResourceHappiness ()
 	{
-		return mResources [ResourceNames.HAPPINESS];
+		return mResources[ResourceNames.HAPPINESS];
 	}
 
 	public Resource GetResourcePopulation ()
 	{
-		return mResources [ResourceNames.POPULATION];
+		return mResources[ResourceNames.POPULATION];
 	}
 
 	public Resource GetResourcePrisoners ()
 	{
-		return mResources [ResourceNames.PRISONERS];
+		return mResources[ResourceNames.PRISONERS];
 	}
 	#endregion
 
