@@ -59,7 +59,7 @@ public abstract class Resource
 	}
 
 	/// Applies the current growth value to the total amount of this resource.
-	public void UpdateResourceTotal ()
+	public virtual void UpdateResourceTotal ()
 	{
 		TotalAmount += ModifiedGrowth;
 		TotalAmount = TotalAmount < 0 ? 0 : TotalAmount;
@@ -71,13 +71,7 @@ public class FoodResource : Resource
 	public FoodResource (float initialValue = ResourceDefaultValues.FOOD)
 		: base (ResourceNames.FOOD, initialValue) {}
 }
-
-public class HappinessResource : Resource
-{
-	public HappinessResource (float initialValue = ResourceDefaultValues.HAPPINESS)
-		: base (ResourceNames.HAPPINESS, initialValue) {}
-}
-
+	
 public class PopulationResource : Resource
 {
 	public PopulationResource (float initialValue = ResourceDefaultValues.POPULATION)
@@ -89,4 +83,19 @@ public class PrisonersResource : Resource
 	public PrisonersResource (float initialValue = ResourceDefaultValues.PRISONERS) 
 		: base (ResourceNames.PRISONERS, initialValue) {}
 }
+
+public class HappinessResource : Resource
+{
+	public HappinessResource (float initialValue = ResourceDefaultValues.HAPPINESS)
+		: base (ResourceNames.HAPPINESS, initialValue) {
+	}
+
+	/// Applies the current growth value to the total amount of this resource.
+	public override void UpdateResourceTotal ()
+	{
+		TotalAmount += ModifiedGrowth;
+		TotalAmount = Mathf.Clamp (TotalAmount, 0, 100);
+	}
+}
+
 #endregion
