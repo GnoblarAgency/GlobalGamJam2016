@@ -61,7 +61,7 @@ public class StatisticsEngine
 
 	void CalculatePopulationFood ()
 	{
-		//Food is consumed by populous. 1 food per person per update. 
+		//Food is consumed by populous. 2 food per person per update. 
 		//If we have shortage of food:
 		//		The number of people who cannot be fed die.
 		//		Population growth is affected by 1/2 the number of food units that we are short of.
@@ -70,7 +70,8 @@ public class StatisticsEngine
 		// 		Population growth is increased by half the amount of surplus food units
 		//		Happiness and happiness growth is increased by the percentage of surplus food compared to population
 
-		float remainder = food.TotalAmount - population.TotalAmount;
+
+		float remainder = food.TotalAmount - (population.TotalAmount * 2);
 		food.RemoveAmount (population.TotalAmount);
 
 		bool tooLittleFood = remainder < 0 ? true : false;
@@ -83,11 +84,13 @@ public class StatisticsEngine
 		{
 			//people with no food die
 			population.RemoveAmount ( remainder );
+
 			//affect growth by 1/2 amount of deaths
 			populationModifier.value = - (remainder / 2);
 
-			happiness.RemoveAmount ( percentOfFoodToPop );
-			happinessModifier.value = - percentOfFoodToPop;
+			//happiness.RemoveAmount ( percentOfFoodToPop );
+			happinessModifier.value = Mathf.Clamp (-percentOfFoodToPop, -5, 0);
+
 		}
 		//increase happiness and growth, and increase populous and growth
 		else
@@ -96,8 +99,8 @@ public class StatisticsEngine
 			populationModifier.value = (remainder / 2);
 
 			//increase happiness and hapiness growth by percentage of surplus food compared to population.
-			happiness.AddAmount ( percentOfFoodToPop );
-			happinessModifier.value = percentOfFoodToPop;
+			//happiness.AddAmount ( percentOfFoodToPop );
+			happinessModifier.value = Mathf.Clamp (percentOfFoodToPop, 0, 5);
 		}
 	}
 }

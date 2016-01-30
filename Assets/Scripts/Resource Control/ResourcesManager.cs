@@ -55,10 +55,10 @@ public sealed class ResourcesManager : MonoBehaviour
 		{
 			mTickTimer = 0f;
 
-
-			UpdateResources ();
-			PopulationAssignment.instance.UpdatePopulationAssignment();
 			mStatsEngine.UpdateStats ();
+			UpdateResources ();
+
+			PopulationAssignment.instance.UpdatePopulationAssignment();
 
 			//event
 			OnTick ();
