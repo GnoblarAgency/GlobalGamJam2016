@@ -21,7 +21,7 @@ public sealed class ResourcesManager : MonoBehaviour
 
 
 	#region PRIVATE VARIABLES
-	private StatsCalculator mStatsCalculator = new StatsCalculator ();
+	private StatsCalculator mStatsCalculator;
 	private Dictionary <string, Resource> mResources = new Dictionary <string, Resource> ();
 
 
@@ -78,6 +78,7 @@ public sealed class ResourcesManager : MonoBehaviour
 		mResources[modifier.Name].RemoveModifier(modifier);
 	}
 
+
 	public Resource GetResourceFood ()
 	{
 		return mResources[ResourceNames.FOOD];
@@ -100,7 +101,7 @@ public sealed class ResourcesManager : MonoBehaviour
 
 	public Resource GetResourceFavour ()
 	{
-		return mResources[ResourceNames.PRISONERS];
+		return mResources[ResourceNames.FAVOUR];
 	}
 	#endregion
 
@@ -122,6 +123,8 @@ public sealed class ResourcesManager : MonoBehaviour
 	{
 		mTickTimer = 0f;
 		CreateResourceStore ();
+
+		mStatsCalculator = new StatsCalculator ();
 	}
 
 	void CreateResourceStore ()
@@ -130,11 +133,13 @@ public sealed class ResourcesManager : MonoBehaviour
 		Resource happiness = new HappinessResource ();
 		Resource population = new PopulationResource ();
 		Resource prisoners = new PrisonersResource ();
+		Resource favour = new FavourResource ();
 
 		mResources.Add (food.DisplayName, food);
 		mResources.Add (happiness.DisplayName, happiness);
 		mResources.Add (population.DisplayName, population);
 		mResources.Add (prisoners.DisplayName, prisoners);
+		mResources.Add (favour.DisplayName, favour);
 	}
 	#endregion
 }
