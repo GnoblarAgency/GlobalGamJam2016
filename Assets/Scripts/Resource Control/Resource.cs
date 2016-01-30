@@ -6,11 +6,11 @@ using System.Collections.Generic;
 
 public enum ResourceType
 {
-	Food,
-	Happiness,
-	Population,
-	Prisoners,
-	Favour
+	Food = 0,
+	Happiness = 1,
+	Population = 2,
+	Prisoners = 3,
+	Favour = 4
 }
 
 #region RESOURCES

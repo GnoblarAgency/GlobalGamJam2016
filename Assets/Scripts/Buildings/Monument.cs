@@ -12,6 +12,14 @@ public class Monument : Building
 	void Awake ()
 	{
 		Init ("Monument");
+		CostToBuild = 700;
+	}
+
+	void OnEnable ()
+	{
+		ResourceModifier modifier = new ResourceModifier ( ResourceType.Favour , 2f);
+		ResourcesManager.instance.ApplyModifier (modifier);
+		mResourceModifiers.Add (modifier);
 	}
 	#endregion
 

@@ -33,9 +33,10 @@ public class PopulationAssignment : MonoBehaviour {
 		
 	void Start () 
 	{
-		foodCollecting = new ResourceModifier(ResourceType.Food, DetermineFoodModifier());
-		prisonerCollecting = new ResourceModifier(ResourceType.Prisoners, DetermineFoodModifier());
+		foodCollecting = new ResourceModifier (ResourceType.Food, DetermineFoodModifier());
+		prisonerCollecting = new ResourceModifier (ResourceType.Prisoners, DeterminePrisonerModifier());
 
+		//set our modifiers so that we can update them directly
 		ApplyModifiers();
 	}
 	#endregion
@@ -45,8 +46,6 @@ public class PopulationAssignment : MonoBehaviour {
 	{
 		foodCollecting.value = DetermineFoodModifier();
 		prisonerCollecting.value = DeterminePrisonerModifier();
-
-
 	}
 
 	public float DetermineFoodModifier()
@@ -60,10 +59,9 @@ public class PopulationAssignment : MonoBehaviour {
 		return (ResourcesManager.instance.GetResourcePopulation().TotalAmount*prisonerAssignment)*prisonerClamp;
 	}
 
-	public void ApplyModifiers()
+	private void ApplyModifiers()
 	{
-		ResourcesManager.instance.ApplyModifier(foodCollecting);
-		ResourcesManager.instance.ApplyModifier(prisonerCollecting);
-
+		ResourcesManager.instance.ApplyModifier (foodCollecting);
+		ResourcesManager.instance.ApplyModifier (prisonerCollecting);
 	}
 }
