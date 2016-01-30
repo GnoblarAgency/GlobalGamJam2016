@@ -13,7 +13,7 @@ public class God : MonoBehaviour
 
 	public Sprite image;
 
-	public ResourceModifier[] resourceModifiers = new ResourceModifier[0]; 
+	public ResourceGrowthModifier[] resourceModifiers = new ResourceGrowthModifier[0]; 
 
 	public Curse[] curses = new Curse[0];
 	public Blessing[] blessings = new Blessing[0];

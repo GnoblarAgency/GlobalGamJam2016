@@ -11,7 +11,7 @@ public class Farm : Building
 
 	void OnEnable ()
 	{
-		ResourceModifier modifier = new ResourceModifier ( ResourceType.Food , 5f);
+		ResourceGrowthModifier modifier = new ResourceGrowthModifier ( ResourceType.Food , 5f);
 		ResourcesManager.instance.ApplyModifier (modifier);
 		mResourceModifiers.Add (modifier);
 	}

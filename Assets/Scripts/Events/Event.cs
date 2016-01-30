@@ -13,7 +13,7 @@ public abstract class Event : MonoBehaviour
 	public string description;
 	public float eventLength;
 
-	public ResourceModifier[] resourceModifiers = new ResourceModifier[0];
+	public ResourceGrowthModifier[] resourceModifiers = new ResourceGrowthModifier[0];
 	#endregion
 
 

@@ -2,14 +2,14 @@
 using System.Collections;
 
 [System.Serializable]
-public class ResourceModifier 
+public class ResourceGrowthModifier 
 {
 	#region PUBLIC VARIABLES
 	public ResourceType resourceType;
 	public float value;
 	#endregion
 
-	public ResourceModifier (ResourceType type, float modifier)
+	public ResourceGrowthModifier (ResourceType type, float modifier)
 	{
 		resourceType = type;
 		value = modifier;

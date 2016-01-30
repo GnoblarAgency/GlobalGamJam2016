@@ -11,7 +11,7 @@ public class Prison : Building
 
 	void OnEnable ()
 	{
-		ResourceModifier modifier = new ResourceModifier ( ResourceType.Prisoners , 1f);
+		ResourceGrowthModifier modifier = new ResourceGrowthModifier ( ResourceType.Prisoners , 1f);
 		ResourcesManager.instance.ApplyModifier (modifier);
 		mResourceModifiers.Add (modifier);
 	}

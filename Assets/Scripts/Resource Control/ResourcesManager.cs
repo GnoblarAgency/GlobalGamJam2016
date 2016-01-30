@@ -66,12 +66,12 @@ public sealed class ResourcesManager : MonoBehaviour
 
 
 	#region PUBLIC_FACING API
-	public void ApplyModifier (ResourceModifier modifier)
+	public void ApplyModifier (ResourceGrowthModifier modifier)
 	{
 		mResources[modifier.resourceType].ApplyModifier(modifier);
 	}
 
-	public void RemoveModifier (ResourceModifier modifier)
+	public void RemoveModifier (ResourceGrowthModifier modifier)
 	{
 		mResources[modifier.resourceType].RemoveModifier(modifier);
 	}

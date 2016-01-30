@@ -123,25 +123,25 @@ public sealed class UIManager : MonoBehaviour
 
 			string info = "";
 			info += "\nFOOD: " + ResourcesManager.instance.GetResourceFood ().GrowthModifiers.Count + "\n";
-			foreach (ResourceModifier rm in ResourcesManager.instance.GetResourceFood ().GrowthModifiers )
+			foreach (ResourceGrowthModifier rm in ResourcesManager.instance.GetResourceFood ().GrowthModifiers )
 			{
 				info += rm.value + "\n";
 			}
 
 			info += "\nHAPPINESS: " + ResourcesManager.instance.GetResourceHappiness ().GrowthModifiers.Count + "\n";
-			foreach (ResourceModifier rm in ResourcesManager.instance.GetResourceHappiness ().GrowthModifiers )
+			foreach (ResourceGrowthModifier rm in ResourcesManager.instance.GetResourceHappiness ().GrowthModifiers )
 			{
 				info += rm.value + "\n";
 			}
 
 			info += "\nPOPULATION: " + ResourcesManager.instance.GetResourcePopulation ().GrowthModifiers.Count + "\n";
-			foreach (ResourceModifier rm in ResourcesManager.instance.GetResourcePopulation ().GrowthModifiers )
+			foreach (ResourceGrowthModifier rm in ResourcesManager.instance.GetResourcePopulation ().GrowthModifiers )
 			{
 				info += rm.value + "\n";
 			}
 
 			info += "\nPRISONERS: " + ResourcesManager.instance.GetResourcePrisoners ().GrowthModifiers.Count + "\n";
-			foreach (ResourceModifier rm in ResourcesManager.instance.GetResourcePrisoners ().GrowthModifiers )
+			foreach (ResourceGrowthModifier rm in ResourcesManager.instance.GetResourcePrisoners ().GrowthModifiers )
 			{
 				info += rm.value + "\n";
 			}

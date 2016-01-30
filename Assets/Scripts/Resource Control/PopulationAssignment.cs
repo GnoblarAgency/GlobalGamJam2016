@@ -8,8 +8,8 @@ public class PopulationAssignment : MonoBehaviour {
 	public static PopulationAssignment instance { get; private set; }
 	#endregion
 
-	private ResourceModifier foodCollecting;
-	private ResourceModifier prisonerCollecting;
+	private ResourceGrowthModifier foodCollecting;
+	private ResourceGrowthModifier prisonerCollecting;
 
 	public float foodAssignment = 0.5f;
 	public float prisonerAssignment = 0.5f;
@@ -33,8 +33,8 @@ public class PopulationAssignment : MonoBehaviour {
 		
 	void Start () 
 	{
-		foodCollecting = new ResourceModifier (ResourceType.Food, DetermineFoodModifier());
-		prisonerCollecting = new ResourceModifier (ResourceType.Prisoners, DeterminePrisonerModifier());
+		foodCollecting = new ResourceGrowthModifier (ResourceType.Food, DetermineFoodModifier());
+		prisonerCollecting = new ResourceGrowthModifier (ResourceType.Prisoners, DeterminePrisonerModifier());
 
 		//set our modifiers so that we can update them directly
 		ApplyModifiers();

@@ -17,7 +17,7 @@ public class Monument : Building
 
 	void OnEnable ()
 	{
-		ResourceModifier modifier = new ResourceModifier ( ResourceType.Favour , 2f);
+		ResourceGrowthModifier modifier = new ResourceGrowthModifier ( ResourceType.Favour , 2f);
 		ResourcesManager.instance.ApplyModifier (modifier);
 		mResourceModifiers.Add (modifier);
 	}

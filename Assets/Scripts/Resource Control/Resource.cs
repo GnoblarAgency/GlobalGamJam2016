@@ -28,7 +28,7 @@ public abstract class Resource
 	public string DisplayName { get; private set; }
 
 	/// The growth modifiers that are currently active for this resource.
-	public List<ResourceModifier> GrowthModifiers { get; protected set; }
+	public List<ResourceGrowthModifier> GrowthModifiers { get; protected set; }
 	/// The total amount of this resource that we have.
 	public float TotalAmount { get; protected set; }
 	#endregion
@@ -38,16 +38,16 @@ public abstract class Resource
 		DisplayName = name;
 		BaseGrowth = baseGrowth;
 		BaseAmount = TotalAmount = baseAmount;
-		GrowthModifiers = new List<ResourceModifier> ();
+		GrowthModifiers = new List<ResourceGrowthModifier> ();
 	}
 
 
-	public virtual void ApplyModifier (ResourceModifier modifier)
+	public virtual void ApplyModifier (ResourceGrowthModifier modifier)
 	{
 		GrowthModifiers.Add (modifier);
 	}
 
-	public virtual void RemoveModifier (ResourceModifier modifier)
+	public virtual void RemoveModifier (ResourceGrowthModifier modifier)
 	{
 		GrowthModifiers.Remove (modifier);
 	}

@@ -13,7 +13,7 @@ public abstract class Building : MonoBehaviour
 
 
 	#region PROTECTED VARIABLES
-	protected List<ResourceModifier> mResourceModifiers = new List<ResourceModifier> ();
+	protected List<ResourceGrowthModifier> mResourceModifiers = new List<ResourceGrowthModifier> ();
 	#endregion
 
 
@@ -28,7 +28,7 @@ public abstract class Building : MonoBehaviour
 		//clean up any applied modifiers
 		if (mResourceModifiers != null)
 		{
-			foreach(ResourceModifier rm in mResourceModifiers)
+			foreach(ResourceGrowthModifier rm in mResourceModifiers)
 			{
 				ResourcesManager.instance.RemoveModifier (rm);
 			}

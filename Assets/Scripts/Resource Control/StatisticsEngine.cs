@@ -19,11 +19,11 @@ public class StatisticsEngine
 	//these are our modifiers for each resource.
 	//NOTE that these are just the modifiers we control based on our main resource cycle.
 	//The other modifiers (blessing / god effects / ...) are not changed and are still in effect!
-	ResourceModifier foodModifier;
-	ResourceModifier favourModifier;
-	ResourceModifier prisonersModifier;
-	ResourceModifier populationModifier;
-	ResourceModifier happinessModifier;
+	ResourceGrowthModifier foodModifier;
+	ResourceGrowthModifier favourModifier;
+	ResourceGrowthModifier prisonersModifier;
+	ResourceGrowthModifier populationModifier;
+	ResourceGrowthModifier happinessModifier;
 	#endregion
 
 
@@ -37,11 +37,11 @@ public class StatisticsEngine
 		happiness = (HappinessResource)ResourcesManager.instance.GetResourceHappiness ();
 
 		//create blank modifiers modifiers
-		foodModifier = new ResourceModifier (ResourceType.Food, 0);
-		favourModifier = new ResourceModifier (ResourceType.Favour, 0);
-		prisonersModifier = new ResourceModifier (ResourceType.Prisoners, 0);
-		populationModifier = new ResourceModifier (ResourceType.Population, 0);
-		happinessModifier = new ResourceModifier (ResourceType.Happiness, 0);
+		foodModifier = new ResourceGrowthModifier (ResourceType.Food, 0);
+		favourModifier = new ResourceGrowthModifier (ResourceType.Favour, 0);
+		prisonersModifier = new ResourceGrowthModifier (ResourceType.Prisoners, 0);
+		populationModifier = new ResourceGrowthModifier (ResourceType.Population, 0);
+		happinessModifier = new ResourceGrowthModifier (ResourceType.Happiness, 0);
 
 		//add these to the respective resources so that we can affect the growth rates
 		food.ApplyModifier (foodModifier);
