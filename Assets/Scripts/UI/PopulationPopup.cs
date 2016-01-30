@@ -25,7 +25,6 @@ public class PopulationPopup : MonoBehaviour {
 	void OnEnable () 
 	{
 		pop = PopulationAssignment.instance;
-		pop.foodAssignment = foodSlider.value;
 	}
 
 	public void setReverse() //Sets food to be the leftover of prisoner hunting
@@ -43,6 +42,9 @@ public class PopulationPopup : MonoBehaviour {
 				pop.foodAssignment = foodSlider.value;
 				pop.prisonerAssignment = prisonerSlider.value;
 			}
+
+		//pop.UpdatePopulationAssignment ();
+
 	}	
 	
 
