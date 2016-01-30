@@ -16,7 +16,7 @@ public sealed  class GodManager : MonoBehaviour
 
 
 	#region PRIVATE VARIABLES
-	private God[] mAvailableGods;
+	private List<God> mGods;
 	#endregion
 
 
@@ -27,7 +27,16 @@ public sealed  class GodManager : MonoBehaviour
 		{
 			Instance = this;
 
-			mAvailableGods = Resources.LoadAll<God> ("Gods/"); 
+			mGods = new List<God>();
+			God[] availableGods = Resources.LoadAll<God> ("Gods/");
+
+			for (int i = 0; i < availableGods.Length; ++i)
+			{ 
+				God god = Instantiate (availableGods[i]); 
+				god.transform.SetParent (transform);
+
+				mGods.Add(god);
+			}
 
 			SelectActiveGod(2);
 		}
@@ -51,7 +60,7 @@ public sealed  class GodManager : MonoBehaviour
 		if (ActiveGod)
 		{ ActiveGod.RemoveEffect(); }
 
-		ActiveGod = mAvailableGods[i];
+		ActiveGod = mGods[i];
 		ActiveGod.ApplyEffect();
 	}
 	#endregion

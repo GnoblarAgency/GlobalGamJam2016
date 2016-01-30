@@ -155,6 +155,7 @@ public class FavourResource : Resource
 	//TODO Subscribe to these events to unless the all-loving goodness of your chosen god, 
 	//or their unrelenting wrath. (These will be major events, such as eclipses, plagues etc with
 	//accompanying animations.
+
 	public static event Action Wrath = delegate {};
 	public static event Action Curse = delegate {};
 	public static event Action Neutral = delegate {};
@@ -162,7 +163,7 @@ public class FavourResource : Resource
 	public static event Action Delight = delegate {};
 	#endregion
 
-	public FavourResource (float baseAmount = 5, float baseGrowth = 0)
+	public FavourResource (float baseAmount = 5, float baseGrowth = -1)
 		: base ("Favour", baseAmount, baseGrowth) {}
 
 	/// Applies the current growth value to the total amount of this resource.
@@ -171,13 +172,13 @@ public class FavourResource : Resource
 		TotalAmount += GetTotalGrowth();
 
 		//do some godly events based on their favour!
-		if (TotalAmount <= -10)
+		if (TotalAmount <= -20)
 		{ Wrath(); }
-		else if (TotalAmount <= -5)
+		else if (TotalAmount <= -10)
 		{ Curse(); }
-		else if (TotalAmount <= 5)
-		{ Neutral(); }
 		else if (TotalAmount <= 10)
+		{ Neutral(); }
+		else if (TotalAmount <= 20)
 		{ Blessing(); }
 		else 
 		{ Delight(); }

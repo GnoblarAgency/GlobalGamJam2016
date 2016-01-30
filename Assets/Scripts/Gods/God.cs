@@ -18,11 +18,17 @@ public class God : MonoBehaviour
 	public Curse[] curses = new Curse[0];
 	public Blessing[] blessings = new Blessing[0];
 
-
+	public float favour = 5f;
+	//ResourceFavour
 	#endregion
 
 
 	#region UNITY EVENTS
+	void Update ()
+	{
+		
+	}
+
 	#endregion
 
 
