@@ -21,7 +21,7 @@ public sealed class ResourcesManager : MonoBehaviour
 
 
 	#region PRIVATE VARIABLES
-	private StatsCalculator mStatsCalculator;
+	private StatisticsEngine mStatsEngine;
 	private Dictionary <ResourceType, Resource> mResources = new Dictionary <ResourceType, Resource> ();
 
 
@@ -58,7 +58,7 @@ public sealed class ResourcesManager : MonoBehaviour
 
 			UpdateResources ();
 			PopulationAssignment.instance.UpdatePopulationAssignment();
-			mStatsCalculator.UpdateStats ();
+			mStatsEngine.UpdateStats ();
 
 			//event
 			OnTick ();
@@ -124,7 +124,7 @@ public sealed class ResourcesManager : MonoBehaviour
 		mTickTimer = 0f;
 		CreateResourceStore ();
 
-		mStatsCalculator = new StatsCalculator ();
+		mStatsEngine = new StatisticsEngine ();
 	}
 
 	void CreateResourceStore ()
