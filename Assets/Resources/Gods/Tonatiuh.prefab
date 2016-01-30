@@ -42,11 +42,16 @@ MonoBehaviour:
   displayName: Tonatiuh
   title: God of the Sun
   biography: 
+  image: {fileID: 21300000, guid: 7499ca87fb1364333b5010403630b632, type: 3}
   resourceModifiers:
   - resourceType: 1
     value: 4
   - resourceType: 3
     value: 4
+  curses:
+  - {fileID: 11423628, guid: d1ff7b1bfd6654e1dbbfe0c0ce75f245, type: 2}
+  blessings:
+  - {fileID: 11415896, guid: 9bb02521f49194693b0ec268da2c88e1, type: 2}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

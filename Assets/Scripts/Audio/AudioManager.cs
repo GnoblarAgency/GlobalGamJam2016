@@ -19,13 +19,13 @@ public class AudioManager : MonoBehaviour
 	#region UNITY EVENTS
 	public void Start()
 	{
-		if (Instance)
+		if (Instance == null)
 		{
 			Instance = this;
 		}
 		else
 		{
-			Debug.LogError ("");
+			Debug.LogError ("There is more than one AudioManager in the scene!");
 		}
 	}
 
