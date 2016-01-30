@@ -51,6 +51,18 @@ public sealed class EventsManager : MonoBehaviour
 
 
 	#region PUBLIC API
+	public Event InstantiateCurse (Curse cursePrefab)
+	{
+		AudioManager.Instance.PlayCurse ();
+		return InstantiateEvent (cursePrefab);
+	}
+
+	public Event InstantiateBlessing (Blessing blessingPrefab)
+	{
+		AudioManager.Instance.PlayBlessing ();
+		return InstantiateEvent (blessingPrefab);
+	}
+
 	public Event InstantiateEvent(Event eventPrefab)
 	{
 		Event activeEvent = Instantiate (eventPrefab);

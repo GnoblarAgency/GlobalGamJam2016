@@ -35,16 +35,13 @@ public sealed class ResourcesManager : MonoBehaviour
 		if (instance == null)
 		{
 			instance = this;
+
+			Init();
 		}
 		else
 		{
 			Debug.LogError("There is more than one ResourcesManager in the scene!");
 		}
-	}
-
-	void Start () 
-	{
-		Init ();
 	}
 
 	void Update () 

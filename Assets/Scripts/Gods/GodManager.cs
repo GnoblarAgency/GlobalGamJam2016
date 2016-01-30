@@ -5,6 +5,9 @@ public sealed  class GodManager : MonoBehaviour
 {
 	#region PROPERTIES
 	public static GodManager Instance { get; private set; }
+
+	/// The currently selected God to which the people are praying
+	public God ActiveGod { get; private set; }
 	#endregion
 
 
@@ -14,9 +17,6 @@ public sealed  class GodManager : MonoBehaviour
 
 	#region PRIVATE VARIABLES
 	private God[] mAvailableGods;
-
-	/// The currently selected God to which the people are praying
-	private God mActiveGod;
 	#endregion
 
 
@@ -28,16 +28,13 @@ public sealed  class GodManager : MonoBehaviour
 			Instance = this;
 
 			mAvailableGods = Resources.LoadAll<God> ("Gods/"); 
+
+			SelectActiveGod(2);
 		}
 		else
 		{
 			Debug.LogError ("There is more than one GodManager in the scene!");
 		}
-	}
-
-	void Start ()
-	{
-
 	}
 
 	void Update ()
@@ -49,20 +46,13 @@ public sealed  class GodManager : MonoBehaviour
 
 	#region PUBLIC API
 	/// Changes the god that the people actively worshipping. This applies new modifiers to resources, removing the last god's modifiers.
-	public void ChangeActiveGod (God god)
+	public void SelectActiveGod (int i)
 	{
-		/*foreach (ResourceModifier rm in god.GetResourceModifiers())
-			ResourcesManager.instance.RemoveModifier (rm);
+		if (ActiveGod)
+		{ ActiveGod.RemoveEffect(); }
 
-		mActiveGod = god;
-
-		foreach (ResourceModifier rm in god.GetResourceModifiers())
-			ResourcesManager.instance.ApplyModifier (rm);*/
-	}
-
-	public God GetActiveGod ()
-	{
-		return mActiveGod;
+		ActiveGod = mAvailableGods[i];
+		ActiveGod.ApplyEffect();
 	}
 	#endregion
 
