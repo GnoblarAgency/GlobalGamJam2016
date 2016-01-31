@@ -84,23 +84,42 @@ public class UISacrificePopup : MonoBehaviour
 
 	public void SacrificePopulation ()
 	{
+		//Decrease happiness severely, but increase fortune alot
+
 		manager.GetResourcePopulation().RemoveAmount(int.Parse(populationField.text));
 
 		int sacrifices = int.Parse(populationField.text);
 
 		//decrease percentage of happiness proportional to percentage of population killed, up to 25%
-		int happinessDeficit = (int) (((float)sacrifices / manager.GetResourcePopulation().TotalAmount) * 100);
-		happinessDeficit = Mathf.Clamp (happinessDeficit, 0, 25);
-		manager.GetResourceHappiness().RemoveAmount (happinessDeficit);
+		int percentageOfPop = (int) (((float)sacrifices / manager.GetResourcePopulation().TotalAmount) * 100);
+		int happinessDeficitClamped = Mathf.Clamp (percentageOfPop, 0, 25);
+		manager.GetResourceHappiness().RemoveAmount (happinessDeficitClamped);
 
-		//TODO Decrease happiness severely, but increase fortune alot (x2.5).
+		float favourIncrease = ((float)percentageOfPop / 25f) * 15f;
+		mSelectedGod.favour.AddAmount (favourIncrease);
 	}
 
 	public void SacrificePrisoner ()
 	{
+		//Dont affect happiness, but increase fortune (x1)
+
+		int sacrifices = int.Parse(prisonerField.text);
+		int prisoners = manager.GetResourcePrisoners().TotalAmount;
+
+		float favourIncrease;
+
+		float perc = ((float)sacrifices/(float)prisoners) * 100;
+		if (sacrifices > 100)
+			favourIncrease = 7;
+		else
+			favourIncrease = 7*perc;
+
 		manager.GetResourcePrisoners().RemoveAmount(int.Parse(prisonerField.text));
 
-		//TODO Dont affect happiness, but increase fortune (x1)
+		//favourIncrease = ((float) percentageOfPop / 25f) * 15f;
+		mSelectedGod.favour.AddAmount (favourIncrease);
+
+
 	}
 
 
