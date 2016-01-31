@@ -42,7 +42,8 @@ MonoBehaviour:
   displayName: Chalchiuhtotolin
   title: God of Disease and Plague
   biography: 
-  image: {fileID: 21300000, guid: ec02acdc28aae49738f46c44b536a732, type: 3}
+  icon: {fileID: 21300000, guid: f26399798d88d490a93e87e9ec945ef4, type: 3}
+  image: {fileID: 21300000, guid: 162614019287443ce97dadf3efc87763, type: 3}
   resourceModifiers:
   - resourceType: 1
     value: 4
