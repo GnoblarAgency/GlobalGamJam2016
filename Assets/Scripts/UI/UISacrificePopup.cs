@@ -105,7 +105,7 @@ public class UISacrificePopup : MonoBehaviour
 		//Dont affect happiness, but increase fortune (x1)
 
 		int sacrifices = int.Parse(prisonerField.text);
-		int prisoners = manager.GetResourcePrisoners().TotalAmount;
+		int prisoners = (int)manager.GetResourcePrisoners().TotalAmount;
 
 		float favourIncrease;
 
@@ -152,7 +152,7 @@ public class UISacrificePopup : MonoBehaviour
 		mSelectedGod = god;
 
 		header.text = string.Format(SACRIFICE_FORMAT, mSelectedGod.displayName);
-		godImage.sprite = god.image;
+		godImage.sprite = god.GetImage();
 	}
 	#endregion
 }

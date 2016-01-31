@@ -43,7 +43,8 @@ MonoBehaviour:
   title: Goddess of Agriculture
   biography: 
   icon: {fileID: 21300000, guid: f9daefcbf14d94fe587dc9186d017e13, type: 3}
-  image: {fileID: 21300000, guid: c30ed7fb656b14d248a6507d6e33452b, type: 3}
+  happyImage: {fileID: 21300000, guid: 8a924da356cd2401daa7f740fbc8f973, type: 3}
+  angryImage: {fileID: 21300000, guid: c30ed7fb656b14d248a6507d6e33452b, type: 3}
   resourceModifiers:
   - resourceType: 0
     value: 5

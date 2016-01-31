@@ -72,7 +72,7 @@ public sealed class UIManager : MonoBehaviour
 		HideAll ();
 
 		eventBox.gameObject.SetActive (true);
-		eventBox.SetDetails (null, activeEvent.displayName, activeEvent.description);
+		eventBox.SetDetails (activeEvent.image, activeEvent.displayName, activeEvent.description);
 	}
 
 	public bool IsScreenVisible ()
