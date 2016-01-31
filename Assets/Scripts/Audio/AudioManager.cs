@@ -31,7 +31,7 @@ public class AudioManager : MonoBehaviour
 
 	void Update()
 	{
-		if (Input.GetKeyDown(KeyCode.A))
+		/*if (Input.GetKeyDown(KeyCode.A))
 		{
 			PlayScream();
 		}
@@ -44,7 +44,7 @@ public class AudioManager : MonoBehaviour
 		if (Input.GetKeyDown(KeyCode.D))
 		{
 			PlayCurse();
-		}
+		}*/
 	}
 	#endregion
 

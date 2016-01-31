@@ -40,6 +40,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   displayName: Blessing of Cloud Serpent
+  image: {fileID: 21300000, guid: 2466728ad7ecf40c3a7c173e0f159a4b, type: 3}
   description: Mixcoatl is pleased with your sacrifices and has blessed your current
     generation with hunting skill. In all his power, he commands the Milky Way to
     cast brighter light during sundown, aiding in the hunting of prisoners.

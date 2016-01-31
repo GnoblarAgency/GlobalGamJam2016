@@ -40,6 +40,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   displayName: Child Protection
+  image: {fileID: 21300000, guid: fda095bb74c9c497798333a5cf21f5d6, type: 3}
   description: Having pleased Itzpapalotl she, being the ruler of Tamoanchan, has
     given special protection to children. During this time your population will boom.
   eventLength: 120

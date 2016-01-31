@@ -40,6 +40,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   displayName: Blessing of the Fifth Sun
+  image: {fileID: 21300000, guid: 8cc38f48c553a4ca3924907ee5339519, type: 3}
   description: Tonatuih has blessed you. The sun will enhance your crops and the mood
     of your people.
   eventLength: 120

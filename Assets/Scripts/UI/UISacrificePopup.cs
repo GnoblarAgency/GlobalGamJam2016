@@ -32,8 +32,14 @@ public class UISacrificePopup : MonoBehaviour
 
 
 	#region UNITY EVENTS
-	void Start ()
+	void OnEnable()
 	{
+		int children = godListParent.childCount;
+		for (int i = children - 1; i >= 0; --i)
+		{
+			Destroy(godListParent.GetChild(i).gameObject);
+		}
+
 		ToggleGroup toggleParent = godListParent.GetComponent<ToggleGroup>();
 
 		foreach (God god in GodManager.Instance.AvailableGods)
@@ -54,12 +60,12 @@ public class UISacrificePopup : MonoBehaviour
 			if (god == GodManager.Instance.ActiveGod)
 			{ godItem.GetComponent<Toggle>().isOn = true; }
 		}
-	}
 
-	void OnEnable()
-	{
 		prisonerField.text = "0";
 		populationField.text = "0";
+
+		prisoners.value = 0;
+		population.value = 0;
 	}
 		
 	void Update()
@@ -78,6 +84,8 @@ public class UISacrificePopup : MonoBehaviour
 	#region PUBLIC API
 	public void Sacrifice () 
 	{
+		AudioManager.Instance.PlayScream();
+		
 		SacrificePopulation ();
 		SacrificePrisoner ();
 	}

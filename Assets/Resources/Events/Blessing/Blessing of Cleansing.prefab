@@ -40,6 +40,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   displayName: Blessing of Cleansing
+  image: {fileID: 21300000, guid: c40a1260a90774af289b72a4ef9ce4d4, type: 3}
   description: The Jewelled Foul, Chalchiuhtotolin, is please with your populous and
     has cleansed your city of all contamination. Your people live long and prosperous
     lives.
