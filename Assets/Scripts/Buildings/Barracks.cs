@@ -12,7 +12,7 @@ public class Barracks : Building
 
 	void OnEnable ()
 	{
-		ResourceGrowthModifier modifier = new ResourceGrowthModifier ( ResourceType.Prisoners , 3f);
+		ResourceGrowthModifier modifier = new ResourceGrowthModifier ( ResourceType.Prisoners , 5f);
 		ResourcesManager.instance.ApplyModifier (modifier);
 		mResourceModifiers.Add (modifier);
 	}

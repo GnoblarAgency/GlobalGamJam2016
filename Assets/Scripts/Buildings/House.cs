@@ -11,7 +11,7 @@ public class House : Building
 
 	void OnEnable ()
 	{
-		ResourceGrowthModifier modifier = new ResourceGrowthModifier ( ResourceType.Population , 1f);
+		ResourceGrowthModifier modifier = new ResourceGrowthModifier ( ResourceType.Population , 2.5f);
 		ResourcesManager.instance.ApplyModifier (modifier);
 		mResourceModifiers.Add (modifier);
 	}

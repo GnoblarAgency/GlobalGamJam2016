@@ -53,31 +53,39 @@ public class BuildingsCache : MonoBehaviour
 	#region PUBLIC API
 	public void BuyBarracks()
 	{
-		if (barracksIdx > barracks.Length && barracks[barracksIdx].NotPurchasable == false)
+		if (barracksIdx > barracks.Length)
 		{
+			if (ResourcesManager.instance.GetResourceFood().TotalAmount < barracks[barracksIdx].CostToBuild)
+				return;
 			barracks[barracksIdx].gameObject.SetActive (true);
 			barracksIdx++;
 		}
 	}
 	public void BuyFarm()
 	{
-		if (farmsIdx < farms.Length && farms[farmsIdx].NotPurchasable == false)
+		if (farmsIdx < farms.Length)
 		{
+			if (ResourcesManager.instance.GetResourceFood().TotalAmount < farms[farmsIdx].CostToBuild)
+				return;
 			farms[farmsIdx].gameObject.SetActive (true);
 			farmsIdx++;
 		}
 	}
 	public void BuyHouse()
 	{
-		if (housesIdx < houses.Length && houses[housesIdx].NotPurchasable == false)
+		if (housesIdx < houses.Length)
 		{
+			if (ResourcesManager.instance.GetResourceFood().TotalAmount < houses[housesIdx].CostToBuild)
+				return;
 			houses[housesIdx].gameObject.SetActive (true);
 			housesIdx ++;
 		}
 	}
 	public void BuyMonument()
 	{
-		if (monumentsIdx < monuments.Length && monuments[monumentsIdx].NotPurchasable == false)
+		if (ResourcesManager.instance.GetResourceFood().TotalAmount < monuments[monumentsIdx].CostToBuild)
+			return;
+		if (monumentsIdx < monuments.Length)
 		{
 			monuments[monumentsIdx].gameObject.SetActive (true);
 			monumentsIdx++;
@@ -85,7 +93,9 @@ public class BuildingsCache : MonoBehaviour
 	}
 	public void BuyPrison()
 	{
-		if (prisonsIdx < prisons.Length  && prisons[prisonsIdx].NotPurchasable == false)
+		if (ResourcesManager.instance.GetResourceFood().TotalAmount < prisons[prisonsIdx].CostToBuild)
+			return;
+		if (prisonsIdx < prisons.Length)
 		{
 			prisons[prisonsIdx].gameObject.SetActive (true);
 			prisonsIdx++;
@@ -177,7 +187,11 @@ public class BuildingsCache : MonoBehaviour
 		foreach (Barracks b in barracks)
 		{
 			if (!b.NotPurchasable)
+			{
+				b.gameObject.SetActive (false);
 				purchasableBs.Add (b);
+			}
+				
 		}
 		barracks = purchasableBs.ToArray ();
 
@@ -187,7 +201,11 @@ public class BuildingsCache : MonoBehaviour
 		foreach (Farm f in farms)
 		{
 			if (!f.NotPurchasable)
+			{
+				f.gameObject.SetActive (false);
 				purchasableFs.Add (f);
+			}
+				
 		}
 
 		houses = FindObjectsOfType <House> ();
@@ -195,7 +213,11 @@ public class BuildingsCache : MonoBehaviour
 		foreach (House h in houses)
 		{
 			if (!h.NotPurchasable)
+			{
+				h.gameObject.SetActive (false);
 				purchasableHs.Add (h);
+			}
+				
 		}
 
 		monuments = FindObjectsOfType <Monument> ();
@@ -203,7 +225,11 @@ public class BuildingsCache : MonoBehaviour
 		foreach (Monument m in monuments)
 		{
 			if (!m.NotPurchasable)
+			{
+				m.gameObject.SetActive (false);
 				purchasableMs.Add (m);
+
+			}
 		}
 
 		prisons = FindObjectsOfType <Prison> ();
@@ -211,7 +237,11 @@ public class BuildingsCache : MonoBehaviour
 		foreach (Prison p in prisons)
 		{
 			if (!p.NotPurchasable)
+			{
+				p.gameObject.SetActive (false);
 				purchasablePs.Add (p);
+			}
+				
 		}
 	}
 	#endregion
