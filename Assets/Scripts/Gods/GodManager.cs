@@ -41,7 +41,15 @@ public sealed  class GodManager : MonoBehaviour
 				AvailableGods.Add(god);
 			}
 
-			SelectActiveGod(2);
+			GodSelectionString selectedGod = FindObjectOfType <GodSelectionString> ();
+
+			for (int i = 0 ; i < AvailableGods.Count ;i ++)
+			{
+				if (AvailableGods[i].displayName.Equals (selectedGod.god))
+				{
+					SelectActiveGod (i);
+				}
+			}
 		}
 		else
 		{
@@ -60,6 +68,8 @@ public sealed  class GodManager : MonoBehaviour
 	/// Changes the god that the people actively worshipping. This applies new modifiers to resources, removing the last god's modifiers.
 	public void SelectActiveGod (int i)
 	{
+		Debug.Log ("Active god = " + AvailableGods[i].displayName);
+
 		if (ActiveGod)
 		{ 
 			ActiveGod.RemoveEffect();
