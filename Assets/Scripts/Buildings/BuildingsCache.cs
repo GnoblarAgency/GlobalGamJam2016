@@ -51,28 +51,43 @@ public class BuildingsCache : MonoBehaviour
 	#region PUBLIC API
 	public void BuyBarracks()
 	{
-		barracks[barracksIdx].gameObject.SetActive (true);
-		barracksIdx++;
+		if (barracksIdx > barracks.Length)
+		{
+			barracks[barracksIdx].gameObject.SetActive (true);
+			barracksIdx++;
+		}
 	}
 	public void BuyFarm()
 	{
-		farms[farmsIdx].gameObject.SetActive (true);
-		farmsIdx++;
+		if (farmsIdx < farms.Length)
+		{
+			farms[farmsIdx].gameObject.SetActive (true);
+			farmsIdx++;
+		}
 	}
 	public void BuyHouse()
 	{
-		houses[housesIdx].gameObject.SetActive (true);
-		housesIdx++;
+		if (housesIdx < houses.Length)
+		{
+			houses[housesIdx].gameObject.SetActive (true);
+			housesIdx ++;
+		}
 	}
 	public void BuyMonument()
 	{
-		monuments[monumentsIdx].gameObject.SetActive (true);
-		monumentsIdx++;
+		if (monumentsIdx < monuments.Length)
+		{
+			monuments[monumentsIdx].gameObject.SetActive (true);
+			monumentsIdx++;
+		}
 	}
 	public void BuyPrison()
 	{
-		prisons[prisonsIdx].gameObject.SetActive (true);
-		prisonsIdx++;
+		if (prisonsIdx < prisons.Length)
+		{
+			prisons[prisonsIdx].gameObject.SetActive (true);
+			prisonsIdx++;
+		}
 	}
 	#endregion
 
@@ -83,7 +98,7 @@ public class BuildingsCache : MonoBehaviour
 	{
 		for (int i = 0 ; i < barracks.Length ; i++)
 		{
-			for (int j = 0 ; j < barracks.Length ; j++)
+			for (int j = 0 ; j < barracks.Length-1 ; j++)
 			{
 				if (GetDistanceToTemple (barracks[i].transform.position) < GetDistanceToTemple(barracks[j + 1].transform.position))
 				{
@@ -96,7 +111,7 @@ public class BuildingsCache : MonoBehaviour
 			
 		for (int i = 0 ; i < farms.Length ; i++)
 		{
-			for (int j = 0 ; j < farms.Length ; j++)
+			for (int j = 0 ; j < farms.Length-1 ; j++)
 			{
 				if (GetDistanceToTemple (farms[i].transform.position) < GetDistanceToTemple(farms[j + 1].transform.position))
 				{
@@ -109,7 +124,7 @@ public class BuildingsCache : MonoBehaviour
 			
 		for (int i = 0 ; i < houses.Length ; i++)
 		{
-			for (int j = 0 ; j < houses.Length ; j++)
+			for (int j = 0 ; j < houses.Length -1; j++)
 			{
 				if (GetDistanceToTemple (houses[i].transform.position) < GetDistanceToTemple(houses[j + 1].transform.position))
 				{
@@ -122,7 +137,7 @@ public class BuildingsCache : MonoBehaviour
 			
 		for (int i = 0 ; i < monuments.Length ; i++)
 		{
-			for (int j = 0 ; j < monuments.Length ; j++)
+			for (int j = 0 ; j < monuments.Length -1; j++)
 			{
 				if (GetDistanceToTemple (monuments[i].transform.position) < GetDistanceToTemple(monuments[j + 1].transform.position))
 				{
@@ -135,7 +150,7 @@ public class BuildingsCache : MonoBehaviour
 
 		for (int i = 0 ; i < prisons.Length ; i++)
 		{
-			for (int j = 0 ; j < prisons.Length ; j++)
+			for (int j = 0 ; j < prisons.Length -1; j++)
 			{
 				if (GetDistanceToTemple (prisons[i].transform.position) < GetDistanceToTemple(prisons[j + 1].transform.position))
 				{
