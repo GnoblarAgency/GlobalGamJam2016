@@ -196,6 +196,11 @@ public class FavourResource : Resource
 
 		godlyMalevolence.value = -0.05f;
 	}
+
+	public float GetNormalisedValue()
+	{
+		return (Mathf.Clamp(TotalAmount, -10, 10) + 10) / 20;
+	}
 }
 
 #endregion

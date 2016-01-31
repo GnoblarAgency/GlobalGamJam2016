@@ -9,6 +9,8 @@ public sealed  class GodManager : MonoBehaviour
 
 	/// The currently selected God to which the people are praying
 	public God ActiveGod { get; private set; }
+
+	public List<God> AvailableGods { get; private set; }
 	#endregion
 
 
@@ -18,7 +20,6 @@ public sealed  class GodManager : MonoBehaviour
 
 
 	#region PRIVATE VARIABLES
-	private List<God> mGods;
 	#endregion
 
 
@@ -29,7 +30,7 @@ public sealed  class GodManager : MonoBehaviour
 		{
 			Instance = this;
 
-			mGods = new List<God>();
+			AvailableGods = new List<God>();
 			God[] availableGods = Resources.LoadAll<God> ("Gods/");
 
 			for (int i = 0; i < availableGods.Length; ++i)
@@ -37,7 +38,7 @@ public sealed  class GodManager : MonoBehaviour
 				God god = Instantiate (availableGods[i]); 
 				god.transform.SetParent (transform);
 
-				mGods.Add(god);
+				AvailableGods.Add(god);
 			}
 
 			SelectActiveGod(2);
@@ -60,17 +61,22 @@ public sealed  class GodManager : MonoBehaviour
 	public void SelectActiveGod (int i)
 	{
 		if (ActiveGod)
-		{ ActiveGod.RemoveEffect(); }
+		{ 
+			ActiveGod.RemoveEffect();
+			ActiveGod.favour.RemoveAmount(-5f);
+			//ActiveGod.RemoveFavourModifier(1.5f);
+		}
 
-		ActiveGod = mGods[i];
+		ActiveGod = AvailableGods[i];
+
 		ActiveGod.ApplyEffect();
-
+		ActiveGod.favour.AddAmount(5f);
 		ActiveGod.AddFavourModifier (1.5f);
 	}
 
 	public void UpdateGodFavours (float divisor = 1)
 	{
-		foreach (God g in mGods)
+		foreach (God g in AvailableGods)
 		{
 			g.favour.UpdateResourceTotal (divisor);
 		}
@@ -78,7 +84,7 @@ public sealed  class GodManager : MonoBehaviour
 
 	public void CheckDivineJudgement ()
 	{
-		foreach (God g in mGods)
+		foreach (God g in AvailableGods)
 		{
 			g.favour.DivineJudgement ();
 		}
@@ -92,7 +98,7 @@ public sealed  class GodManager : MonoBehaviour
 		if (debugOutput != null)
 		{
 			debugOutput.text = "GODS:\n";
-			foreach (God god in mGods)
+			foreach (God god in AvailableGods)
 			{
 				debugOutput.text += god.displayName + ": " + god.favour.TotalAmount + " + " + god.favour.GetTotalGrowth() + "\n";
 			}

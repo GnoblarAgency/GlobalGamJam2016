@@ -11,6 +11,7 @@ public class God : MonoBehaviour
 	[TextArea (3, 10)]
 	public string biography;
 
+	public Sprite icon;
 	public Sprite image;
 
 	public ResourceGrowthModifier[] resourceModifiers = new ResourceGrowthModifier[0]; 
@@ -18,7 +19,7 @@ public class God : MonoBehaviour
 	public Curse[] curses = new Curse[0];
 	public Blessing[] blessings = new Blessing[0];
 
-	public FavourResource favour = new FavourResource (9);
+	public FavourResource favour = new FavourResource (3);
 	#endregion
 
 

@@ -2,41 +2,84 @@
 using UnityEngine.UI;
 using System.Collections;
 
-public class TemplePopup : MonoBehaviour {
+public class UISacrificePopup : MonoBehaviour
+{
+	#region CONSTANTS
+	private string SACRIFICE_FORMAT = "Sacrifice to {0}";
+	#endregion
+
+
+	#region PUBLIC VARIABLES
+	public Transform godListParent;
+	public UIGodListItem godItemPrefab;
+
+	public Text header;
+	public Image godImage;
 
 	public Slider prisoners;
 	public Slider population;
 
 	public Text prisonerField;
 	public Text populationField;
+	#endregion
+
+
+	#region PRIVATE VARIABLES
+	private God mSelectedGod;
 
 	private ResourcesManager manager;
+	#endregion
 
+
+	#region UNITY EVENTS
+	void Start ()
+	{
+		ToggleGroup toggleParent = godListParent.GetComponent<ToggleGroup>();
+
+		foreach (God god in GodManager.Instance.AvailableGods)
+		{
+			UIGodListItem godItem = Instantiate(godItemPrefab);
+
+			godItem.SetDetails (god.icon, god.favour.GetNormalisedValue());
+
+			godItem.transform.SetParent(godListParent, false);
+
+			God selectedGod = god;
+			godItem.GetComponent<Toggle>().group = toggleParent;
+			godItem.GetComponent<Toggle>().onValueChanged.AddListener( (selected) => {
+				if (selected)
+				{ SetSelectedGod(selectedGod); }
+			});
+
+			if (god == GodManager.Instance.ActiveGod)
+			{ godItem.GetComponent<Toggle>().isOn = true; }
+		}
+	}
+
+	void OnEnable()
+	{
+		prisonerField.text = "0";
+		populationField.text = "0";
+	}
+		
 	void Update()
 	{
 		if (manager == null)
 		{
-			 manager = ResourcesManager.instance;
+			manager = ResourcesManager.instance;
 		}
 
 		prisoners.maxValue = manager.GetResourcePrisoners().TotalAmount;
 		population.maxValue = manager.GetResourcePopulation().TotalAmount;
 	}
+	#endregion
 
-	void OnEnable()
-	{
-		ResourcesManager manager = ResourcesManager.instance;
-		prisonerField.text = "0";
-		populationField.text = "0";
-	}
 
+	#region PUBLIC API
 	public void Sacrifice () 
 	{
-		ResourcesManager manager = ResourcesManager.instance;
-
 		SacrificePopulation ();
 		SacrificePrisoner ();
-
 	}
 
 	public void SacrificePopulation ()
@@ -65,7 +108,7 @@ public class TemplePopup : MonoBehaviour {
 	{
 		prisonerField.text =  prisoners.value.ToString();
 	}
-	
+
 	public void SetPopulationField()
 	{
 		populationField.text = population.value.ToString();
@@ -80,4 +123,16 @@ public class TemplePopup : MonoBehaviour {
 	{
 		population.value =   int.Parse(populationField.text);
 	}
+	#endregion
+
+
+	#region HELPER FUNCTIONS
+	void SetSelectedGod(God god)
+	{
+		mSelectedGod = god;
+
+		header.text = string.Format(SACRIFICE_FORMAT, mSelectedGod.displayName);
+		godImage.sprite = god.image;
+	}
+	#endregion
 }
