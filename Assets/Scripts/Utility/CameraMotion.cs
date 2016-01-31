@@ -17,7 +17,7 @@ public class CameraMotion : MonoBehaviour {
 	Vector2 ZoomRange;
 	float CurrentZoom = 0;
 	float ZoomZpeed = 1;
-	float ZoomRotation = 1.3f;
+	float ZoomRotation = 1f;
 
 	private Vector3 InitPos;
 	private Vector3 InitRotation;
@@ -26,7 +26,7 @@ public class CameraMotion : MonoBehaviour {
 	void Start()
 	{
 		//Instantiate(Arrow, Vector3.zero, Quaternion.identity);
-		ZoomRange = new Vector2(-50,50);
+		ZoomRange = new Vector2(-120,60);
 		InitPos = transform.position;
 		InitRotation = transform.eulerAngles;
 
