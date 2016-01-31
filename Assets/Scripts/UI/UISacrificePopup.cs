@@ -78,7 +78,6 @@ public class UISacrificePopup : MonoBehaviour
 	#region PUBLIC API
 	public void Sacrifice () 
 	{
-		AudioManager.Instance.PlayScream ();
 		SacrificePopulation ();
 		SacrificePrisoner ();
 	}
@@ -105,7 +104,7 @@ public class UISacrificePopup : MonoBehaviour
 		//Dont affect happiness, but increase fortune (x1)
 
 		int sacrifices = int.Parse(prisonerField.text);
-		int prisoners = (int)manager.GetResourcePrisoners().TotalAmount;
+		float prisoners = manager.GetResourcePrisoners().TotalAmount;
 
 		float favourIncrease;
 
