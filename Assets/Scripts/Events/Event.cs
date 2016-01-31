@@ -9,6 +9,8 @@ public abstract class Event : MonoBehaviour
 	#region PUBLIC VARIABLES
 	public string displayName;
 
+	public Sprite image;
+
 	[TextArea(3, 10)]
 	public string description;
 	public float eventLength;

@@ -40,6 +40,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   displayName: Curse of Darkness
+  image: {fileID: 21300000, guid: 7499ca87fb1364333b5010403630b632, type: 3}
   description: Tonatiuh is greatly displeased! As punishment he now refuses to move
     the sun, plunging the lands into perpetual darkness!
   eventLength: 240
