@@ -73,6 +73,14 @@ public sealed  class GodManager : MonoBehaviour
 			g.favour.UpdateResourceTotal (divisor);
 		}
 	}
+
+	public void CheckDivineJudgement ()
+	{
+		foreach (God g in mGods)
+		{
+			g.favour.DivineJudgement ();
+		}
+	}
 	#endregion
 
 

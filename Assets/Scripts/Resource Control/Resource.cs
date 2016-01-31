@@ -168,7 +168,11 @@ public class FavourResource : Resource
 	public override void UpdateResourceTotal (float divisor = 1)
 	{
 		TotalAmount += GetTotalGrowth() / divisor;
+	}
 
+	/// Will trigger a blessing or a curse based on the current favour value.
+	public void DivineJudgement ()
+	{
 		//do some godly events based on their favour!
 		if (TotalAmount <= -20)
 		{ Wrath(); }
