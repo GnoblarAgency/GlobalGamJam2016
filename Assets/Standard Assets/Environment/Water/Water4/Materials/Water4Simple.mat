@@ -138,11 +138,11 @@ Material:
       data:
         first:
           name: _BaseColor
-        second: {r: 0.17275561, g: 0.224076, b: 0.24626863, a: 0.5058824}
+        second: {r: 0.17275561, g: 0.224076, b: 0.24626863, a: 0.697}
       data:
         first:
           name: _ReflectionColor
-        second: {r: 0.47582978, g: 0.6064865, b: 0.6641791, a: 0.47058824}
+        second: {r: 0.47582978, g: 0.6064865, b: 0.6641791, a: 0.364}
       data:
         first:
           name: _SpecularColor
@@ -150,7 +150,7 @@ Material:
       data:
         first:
           name: _WorldLightDir
-        second: {r: 0.013992369, g: -0.17359081, b: -0.9847186, a: 0}
+        second: {r: -0.09976267, g: -0.1735908, b: 0.9797518, a: 0}
       data:
         first:
           name: _Foam
