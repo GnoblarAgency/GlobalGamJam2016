@@ -50,6 +50,11 @@ public sealed  class GodManager : MonoBehaviour
 					SelectActiveGod (i);
 				}
 			}
+
+			if (ActiveGod == null)
+			{
+				SelectActiveGod(2);
+			}
 		}
 		else
 		{
