@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections.Generic;
 
 public sealed  class GodManager : MonoBehaviour
@@ -12,6 +13,7 @@ public sealed  class GodManager : MonoBehaviour
 
 
 	#region PUBLIC VARIABLES
+	public Text debugOutput;
 	#endregion
 
 
@@ -48,7 +50,7 @@ public sealed  class GodManager : MonoBehaviour
 
 	void Update ()
 	{
-
+		DebugOutput ();
 	}
 	#endregion
 
@@ -63,9 +65,28 @@ public sealed  class GodManager : MonoBehaviour
 		ActiveGod = mGods[i];
 		ActiveGod.ApplyEffect();
 	}
+
+	public void UpdateGodFavours (float divisor = 1)
+	{
+		foreach (God g in mGods)
+		{
+			g.favour.UpdateResourceTotal (divisor);
+		}
+	}
 	#endregion
 
 
 	#region HELPER FUNCTIONS
+	void DebugOutput ()
+	{
+		if (debugOutput != null)
+		{
+			debugOutput.text = "GODS:\n";
+			foreach (God god in mGods)
+			{
+				debugOutput.text += god.displayName + ": " + god.favour.TotalAmount + " + " + god.favour.GetTotalGrowth() + "\n";
+			}
+		}
+	}
 	#endregion
 }

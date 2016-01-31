@@ -57,6 +57,7 @@ public sealed class ResourcesManager : MonoBehaviour
 			mTicks++;
 
 			UpdateResources_Increment ();
+			GodManager.Instance.UpdateGodFavours (TICK_DELAY);
 			PopulationAssignment.instance.UpdatePopulationAssignment();
 
 
