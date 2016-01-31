@@ -18,7 +18,7 @@ public sealed class ResourcesManager : MonoBehaviour
 	#region PUBLIC VARIABLES
 	//this will result in a 2min30 period
 	public const float TICK_DELAY = 10f;
-	public const int TICK_COUNT_FOR_PERIOD = 1;	
+	public const int TICK_COUNT_FOR_PERIOD = 3;	
 	#endregion
 
 
@@ -71,18 +71,6 @@ public sealed class ResourcesManager : MonoBehaviour
 			mStatsEngine.UpdateStats ();
 			GodManager.Instance.CheckDivineJudgement();
 			OnTick ();	
-
-			/*mTickTimer = 0f;
-
-			UpdateResources_Tick ();
-			PopulationAssignment.instance.UpdatePopulationAssignment();
-			mStatsEngine.UpdateStats ();
-		
-			PeopleSpawner.instance.CheckSpawn(GetResourcePopulation().TotalAmount);
-			*/
-
-			//event
-
 		}
 	}
 	#endregion
