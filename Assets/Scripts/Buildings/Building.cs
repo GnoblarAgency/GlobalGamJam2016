@@ -9,6 +9,8 @@ public abstract class Building : MonoBehaviour
 	public string DisplayName { get; private set; }
 
 	public float CostToBuild {get ; protected set; }
+
+	public bool NotPurchasable;
 	#endregion
 
 

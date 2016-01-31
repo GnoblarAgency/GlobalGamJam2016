@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 /// Holds all buildings in the current scene
 public class BuildingsCache : MonoBehaviour
@@ -43,6 +44,7 @@ public class BuildingsCache : MonoBehaviour
 		monuments = FindObjectsOfType <Monument> ();
 		prisons = FindObjectsOfType <Prison> ();
 
+		ClearNonPurchasables ();
 		SortBuildings ();
 	}
 	#endregion
@@ -51,7 +53,7 @@ public class BuildingsCache : MonoBehaviour
 	#region PUBLIC API
 	public void BuyBarracks()
 	{
-		if (barracksIdx > barracks.Length)
+		if (barracksIdx > barracks.Length && barracks[barracksIdx].NotPurchasable == false)
 		{
 			barracks[barracksIdx].gameObject.SetActive (true);
 			barracksIdx++;
@@ -59,7 +61,7 @@ public class BuildingsCache : MonoBehaviour
 	}
 	public void BuyFarm()
 	{
-		if (farmsIdx < farms.Length)
+		if (farmsIdx < farms.Length && farms[farmsIdx].NotPurchasable == false)
 		{
 			farms[farmsIdx].gameObject.SetActive (true);
 			farmsIdx++;
@@ -67,7 +69,7 @@ public class BuildingsCache : MonoBehaviour
 	}
 	public void BuyHouse()
 	{
-		if (housesIdx < houses.Length)
+		if (housesIdx < houses.Length && houses[housesIdx].NotPurchasable == false)
 		{
 			houses[housesIdx].gameObject.SetActive (true);
 			housesIdx ++;
@@ -75,7 +77,7 @@ public class BuildingsCache : MonoBehaviour
 	}
 	public void BuyMonument()
 	{
-		if (monumentsIdx < monuments.Length)
+		if (monumentsIdx < monuments.Length && monuments[monumentsIdx].NotPurchasable == false)
 		{
 			monuments[monumentsIdx].gameObject.SetActive (true);
 			monumentsIdx++;
@@ -83,7 +85,7 @@ public class BuildingsCache : MonoBehaviour
 	}
 	public void BuyPrison()
 	{
-		if (prisonsIdx < prisons.Length)
+		if (prisonsIdx < prisons.Length  && prisons[prisonsIdx].NotPurchasable == false)
 		{
 			prisons[prisonsIdx].gameObject.SetActive (true);
 			prisonsIdx++;
@@ -166,6 +168,51 @@ public class BuildingsCache : MonoBehaviour
 	float GetDistanceToTemple (Vector3 position)
 	{
 		return Vector3.Distance (templePosition, position);
+	}
+
+
+	void ClearNonPurchasables()
+	{
+		List<Barracks> purchasableBs = new List<Barracks> ();
+		foreach (Barracks b in barracks)
+		{
+			if (!b.NotPurchasable)
+				purchasableBs.Add (b);
+		}
+		barracks = purchasableBs.ToArray ();
+
+
+		farms = FindObjectsOfType <Farm> ();
+		List<Farm> purchasableFs = new List<Farm> ();
+		foreach (Farm f in farms)
+		{
+			if (!f.NotPurchasable)
+				purchasableFs.Add (f);
+		}
+
+		houses = FindObjectsOfType <House> ();
+		List<House> purchasableHs = new List<House> ();
+		foreach (House h in houses)
+		{
+			if (!h.NotPurchasable)
+				purchasableHs.Add (h);
+		}
+
+		monuments = FindObjectsOfType <Monument> ();
+		List<Monument> purchasableMs = new List<Monument> ();
+		foreach (Monument m in monuments)
+		{
+			if (!m.NotPurchasable)
+				purchasableMs.Add (m);
+		}
+
+		prisons = FindObjectsOfType <Prison> ();
+		List<Prison> purchasablePs = new List<Prison> ();
+		foreach (Prison p in prisons)
+		{
+			if (!p.NotPurchasable)
+				purchasablePs.Add (p);
+		}
 	}
 	#endregion
 }
