@@ -24,6 +24,10 @@ public class God : MonoBehaviour
 
 
 	#region UNITY EVENTS
+	void Start ()
+	{
+		ResourcesManager.OnTick += CheckBlessingCurse;
+	}
 	void Update ()
 	{
 		
@@ -57,5 +61,19 @@ public class God : MonoBehaviour
 
 
 	#region HELPER FUNCTIONS
+	void CheckBlessingCurse ()
+	{
+		//do some godly events based on their favour!
+		if (favour.TotalAmount <= -10)
+		{ 
+			int idx = UnityEngine.Random.Range (0, blessings.Length);
+			EventsManager.Instance.InstantiateBlessing (blessings [idx]); 
+		}
+		else if (favour.TotalAmount >= 10)
+		{ 
+			int idx = UnityEngine.Random.Range (0, curses.Length);
+			EventsManager.Instance.InstantiateCurse (curses[idx]); 
+		}
+	}
 	#endregion
 }

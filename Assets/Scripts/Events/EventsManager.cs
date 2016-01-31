@@ -35,17 +35,12 @@ public sealed class EventsManager : MonoBehaviour
 		{
 			Debug.LogError("There is more than one EventsManager in the scene!");
 		}
+
+		ResourcesManager.OnTick += RandomEvent;
 	}
 
 	void Update ()
 	{
-		if (Input.GetKeyUp (KeyCode.C))
-		{
-			Event randomEvent = InstantiateEvent(mAvailableWorldEvents[Random.Range (0, mAvailableWorldEvents.Length)]);
-
-			if (randomEvent)
-			{ Debug.LogFormat ("{0} - {1}", randomEvent.displayName, randomEvent.description); }
-		}
 	}
 	#endregion
 
@@ -87,5 +82,15 @@ public sealed class EventsManager : MonoBehaviour
 
 
 	#region HELPER FUNCTIONS
+	void RandomEvent ()
+	{
+		if (UnityEngine.Random.Range (0f, 1f) < 0.05f)
+		{
+			Event randomEvent = InstantiateEvent(mAvailableWorldEvents[Random.Range (0, mAvailableWorldEvents.Length)]);
+
+			if (randomEvent)
+			{ Debug.LogFormat ("{0} - {1}", randomEvent.displayName, randomEvent.description); }
+		}
+	}
 	#endregion
 }
