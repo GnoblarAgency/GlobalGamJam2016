@@ -26,14 +26,14 @@ public class PeopleSpawner : MonoBehaviour
 
 		if (diff > 0)//population growth and we add a person
 		{
-			for (int k = 0; k < diff/3; k++)
+			for (int k = 0; k < diff/5; k++)
 			{
 				SpawnPerson();
 			}
 		}
 		else
 		{
-			for (int k = 0; k < diff/3; k++)
+			for (int k = 0; k < diff/5; k++)
 			{
 				KillPerson();
 			}

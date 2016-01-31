@@ -6,7 +6,7 @@ public class TemplePopup : MonoBehaviour {
 
 	public Slider prisoners;
 	public Slider population;
-
+	public Animator stab;
 	public Text prisonerField;
 	public Text populationField;
 
@@ -26,8 +26,8 @@ public class TemplePopup : MonoBehaviour {
 	void OnEnable()
 	{
 		ResourcesManager manager = ResourcesManager.instance;
-		prisonerField.text = "0";
-		populationField.text = "0";
+//		prisonerField.text = "0";
+//		populationField.text = "0";
 	}
 
 	public void Sacrifice () 

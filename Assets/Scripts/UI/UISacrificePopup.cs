@@ -78,6 +78,7 @@ public class UISacrificePopup : MonoBehaviour
 	#region PUBLIC API
 	public void Sacrifice () 
 	{
+		AudioManager.Instance.PlayScream ();
 		SacrificePopulation ();
 		SacrificePrisoner ();
 	}
