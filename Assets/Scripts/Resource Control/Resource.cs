@@ -176,12 +176,12 @@ public class FavourResource : Resource
 	public override void AddAmount (float amount)
 	{
 		TotalAmount += amount;
-		TotalAmount = Mathf.Clamp (TotalAmount, -10, 10);
+		TotalAmount = Mathf.Clamp (TotalAmount, -15, 15);
 	}
 	public override void RemoveAmount (float amount)
 	{
 		TotalAmount -= amount;
-		TotalAmount = Mathf.Clamp (TotalAmount, -10, 10);
+		TotalAmount = Mathf.Clamp (TotalAmount, -15, 15);
 	}
 	
 	public override void UpdateResourceTotal (float divisor = 1)
@@ -193,7 +193,7 @@ public class FavourResource : Resource
 		else if (TotalAmount >= 10)
 		{ BlessingNotification(); }
 
-		TotalAmount = Mathf.Clamp (TotalAmount, -10, 10);
+		TotalAmount = Mathf.Clamp (TotalAmount, -15, 15);
 	}
 
 	/// Will trigger a blessing or a curse based on the current favour value.
@@ -212,7 +212,7 @@ public class FavourResource : Resource
 
 	public float GetNormalisedValue()
 	{
-		return (Mathf.Clamp(TotalAmount, -10, 10) + 10) / 20;
+		return (Mathf.Clamp(TotalAmount, -15, 15) + 15) / 30;
 	}
 }
 
