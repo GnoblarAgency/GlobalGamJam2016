@@ -79,12 +79,11 @@ public abstract class Resource
 
 		return modifierGrowth;
 	}
-
-
-	/// Applies the current growth value to the total amount of this resource.
-	public virtual void UpdateResourceTotal ()
+		
+	/// Updates the current total resources by the amount of growth. A divisor can be passed in order to perform incremental updates (such as per second...)
+	public virtual void UpdateResourceTotal (float divisor = 1)
 	{
-		AddAmount (GetTotalGrowth());
+		AddAmount (GetTotalGrowth() / divisor);
 		TotalAmount = TotalAmount < 0 ? 0 : TotalAmount;
 	}
 }
@@ -123,8 +122,8 @@ public class HappinessResource : Resource
 	public override void AddAmount (float amount)
 	{
 		//don't increase more than 5% of itself
-		float twentiethOfPopulation = TotalAmount/20f;
-		amount = Mathf.Clamp (amount, 0, twentiethOfPopulation);
+		float twentiethOfHappiness = TotalAmount/20f;
+		amount = Mathf.Clamp (amount, 0, twentiethOfHappiness);
 		base.AddAmount (amount);
 	}
 
@@ -139,15 +138,15 @@ public class HappinessResource : Resource
 
 		return modifierGrowth;
 	}
-
-	/// Applies the current growth value to the total amount of this resource.
-	public override void UpdateResourceTotal ()
+		
+	public override void UpdateResourceTotal (float divisor = 1)
 	{
-		AddAmount (GetTotalGrowth());
+		AddAmount (GetTotalGrowth() / divisor);
 		TotalAmount = Mathf.Clamp (TotalAmount, 0, 100);
 	}
 }
 
+/// Represents the favour of a god
 public class FavourResource : Resource
 {
 
@@ -165,11 +164,10 @@ public class FavourResource : Resource
 
 	public FavourResource (float baseAmount = 5, float baseGrowth = -1)
 		: base ("Favour", baseAmount, baseGrowth) {}
-
-	/// Applies the current growth value to the total amount of this resource.
-	public override void UpdateResourceTotal ()
+	
+	public override void UpdateResourceTotal (float divisor = 1)
 	{
-		TotalAmount += GetTotalGrowth();
+		TotalAmount += GetTotalGrowth() / divisor;
 
 		//do some godly events based on their favour!
 		if (TotalAmount <= -20)

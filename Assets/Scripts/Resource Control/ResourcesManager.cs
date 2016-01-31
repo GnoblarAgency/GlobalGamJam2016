@@ -16,7 +16,9 @@ public sealed class ResourcesManager : MonoBehaviour
 
 
 	#region PUBLIC VARIABLES
+	//this will result in a 2min30 period
 	public const float TICK_DELAY = 10f;
+	public const int TICK_COUNT_FOR_PERIOD = 1;	
 	#endregion
 
 
@@ -26,6 +28,7 @@ public sealed class ResourcesManager : MonoBehaviour
 
 
 	private float mTickTimer;
+	private float mTicks;
 	#endregion
 
 
@@ -48,18 +51,59 @@ public sealed class ResourcesManager : MonoBehaviour
 	{
 		mTickTimer += Time.deltaTime;
 
-		if (mTickTimer >= TICK_DELAY)
+		if (mTickTimer >= 1)
 		{
 			mTickTimer = 0f;
+			mTicks++;
+
+			UpdateResources_Increment ();
+			PopulationAssignment.instance.UpdatePopulationAssignment();
 
 
-			UpdateResources ();
+			PeopleSpawner.instance.CheckSpawn(GetResourcePopulation().TotalAmount);
+		}
+
+		if (mTickTimer >= TICK_DELAY)
+		{
+			mTicks = 0;
+
+			mStatsEngine.UpdateStats ();
+			OnTick ();	
+
+			/*mTickTimer = 0f;
+
+			UpdateResources_Tick ();
 			PopulationAssignment.instance.UpdatePopulationAssignment();
 			mStatsEngine.UpdateStats ();
 		
 			PeopleSpawner.instance.CheckSpawn(GetResourcePopulation().TotalAmount);
+			*/
+
 			//event
-			OnTick ();
+
+		}
+	}
+	#endregion
+
+
+	#region RESOURCE GROWTH
+	/// Applies a fraction of growth to the total accumulated resources values of all resources.
+	/// Is a smaller, incremental update
+	void UpdateResources_Increment ()
+	{
+		foreach (Resource r in mResources.Values)
+		{
+			r.UpdateResourceTotal (TICK_DELAY);
+		}
+	}
+
+	/// Applies all growth to the total accumulated resources values of all resources. 
+	/// Is singular, large update
+	void UpdateResources_Tick ()
+	{
+		foreach (Resource r in mResources.Values)
+		{
+			r.UpdateResourceTotal ();
 		}
 	}
 	#endregion
@@ -96,23 +140,6 @@ public sealed class ResourcesManager : MonoBehaviour
 	{
 		return mResources[ResourceType.Prisoners];
 	}
-
-	public Resource GetResourceFavour ()
-	{
-		return mResources[ResourceType.Favour];
-	}
-	#endregion
-
-
-	#region RESOURCE GROWTH
-	/// Applies the growth to the total accumulated resources value.
-	void UpdateResources ()
-	{
-		foreach (Resource r in mResources.Values)
-		{
-			r.UpdateResourceTotal ();
-		}
-	}
 	#endregion
 
 
@@ -131,13 +158,11 @@ public sealed class ResourcesManager : MonoBehaviour
 		Resource happiness = new HappinessResource ();
 		Resource population = new PopulationResource ();
 		Resource prisoners = new PrisonersResource ();
-		Resource favour = new FavourResource ();
 
 		mResources.Add (ResourceType.Food, food);
 		mResources.Add (ResourceType.Happiness, happiness);
 		mResources.Add (ResourceType.Population, population);
 		mResources.Add (ResourceType.Prisoners, prisoners);
-		mResources.Add (ResourceType.Favour, favour);
 	}
 	#endregion
 }

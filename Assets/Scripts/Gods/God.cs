@@ -18,8 +18,7 @@ public class God : MonoBehaviour
 	public Curse[] curses = new Curse[0];
 	public Blessing[] blessings = new Blessing[0];
 
-	public float favour = 5f;
-	//ResourceFavour
+	public FavourResource favour = new FavourResource (9, -1);
 	#endregion
 
 
@@ -28,7 +27,6 @@ public class God : MonoBehaviour
 	{
 		
 	}
-
 	#endregion
 
 

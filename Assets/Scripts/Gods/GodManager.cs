@@ -38,7 +38,7 @@ public sealed  class GodManager : MonoBehaviour
 				mGods.Add(god);
 			}
 
-			SelectActiveGod(2);
+			//SelectActiveGod(2);
 		}
 		else
 		{
@@ -64,7 +64,6 @@ public sealed  class GodManager : MonoBehaviour
 		ActiveGod.ApplyEffect();
 	}
 	#endregion
-
 
 
 	#region HELPER FUNCTIONS

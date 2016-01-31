@@ -522,6 +522,21 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: -20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &128039072
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 1224046594}
+  serializedVersion: 4
+  m_Component:
+  - 224: {fileID: 1317307837}
+  m_Layer: 0
+  m_Name: Missing Prefab (Dummy)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &130535551
 GameObject:
   m_ObjectHideFlags: 0
@@ -11982,11 +11997,24 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1311032789}
---- !u!224 &1317307837 stripped
+--- !u!224 &1317307837
 RectTransform:
+  m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 22470584, guid: 1f5c4f94b6fa242b99073dc53aa081c5,
     type: 2}
   m_PrefabInternal: {fileID: 1224046594}
+  m_GameObject: {fileID: 128039072}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1438314874}
+  m_RootOrder: 0
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1322636783
 GameObject:
   m_ObjectHideFlags: 0
@@ -12810,6 +12838,34 @@ RectTransform:
   m_AnchoredPosition: {x: -5, y: 0}
   m_SizeDelta: {x: -20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &1438314873
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 1224046594}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1438314874}
+  m_Layer: 0
+  m_Name: Missing Prefab
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1438314874
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 1224046594}
+  m_GameObject: {fileID: 1438314873}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1317307837}
+  m_Father: {fileID: 1845781505}
+  m_RootOrder: 6
 --- !u!1 &1454351240
 GameObject:
   m_ObjectHideFlags: 0
@@ -16645,7 +16701,7 @@ RectTransform:
   - {fileID: 889601481}
   - {fileID: 863810210}
   - {fileID: 642250215}
-  - {fileID: 1317307837}
+  - {fileID: 1438314874}
   - {fileID: 635923600}
   m_Father: {fileID: 1454351241}
   m_RootOrder: 0

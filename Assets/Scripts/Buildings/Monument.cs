@@ -5,6 +5,7 @@ public class Monument : Building
 {
 	#region PROPERTIES
 	public God DedicatedGod { get; set; }
+	public string GodDecidicateTo;
 	#endregion
 
 
@@ -17,9 +18,9 @@ public class Monument : Building
 
 	void OnEnable ()
 	{
-		ResourceGrowthModifier modifier = new ResourceGrowthModifier ( ResourceType.Favour , 2f);
-		ResourcesManager.instance.ApplyModifier (modifier);
-		mResourceModifiers.Add (modifier);
+//		ResourceGrowthModifier modifier = new ResourceGrowthModifier ( ResourceType.Favour , 2f);
+//		ResourcesManager.instance.ApplyModifier (modifier);
+//		mResourceModifiers.Add (modifier);
 	}
 	#endregion
 
