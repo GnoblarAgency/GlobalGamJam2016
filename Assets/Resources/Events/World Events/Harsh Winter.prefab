@@ -42,7 +42,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   displayName: Harsh Winter
-  image: {fileID: 21300000, guid: ec02acdc28aae49738f46c44b536a732, type: 3}
+  image: {fileID: 21300000, guid: c6ebd6e90431f41bab16f6762f1ccb1b, type: 3}
   description: The previous winter has been particularly harsh and long. The ground
     is still frozen and even the hardiest plants struggle to grow.
   eventLength: 30
