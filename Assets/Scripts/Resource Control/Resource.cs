@@ -172,6 +172,17 @@ public class FavourResource : Resource
 	{
 		GrowthModifiers.Add (godlyMalevolence);
 	}
+
+	public override void AddAmount (float amount)
+	{
+		TotalAmount += amount;
+		TotalAmount = Mathf.Clamp (TotalAmount, -10, 10);
+	}
+	public override void RemoveAmount (float amount)
+	{
+		TotalAmount -= amount;
+		TotalAmount = Mathf.Clamp (TotalAmount, -10, 10);
+	}
 	
 	public override void UpdateResourceTotal (float divisor = 1)
 	{
@@ -181,6 +192,8 @@ public class FavourResource : Resource
 		{ CurseNotification(); }
 		else if (TotalAmount >= 10)
 		{ BlessingNotification(); }
+
+		TotalAmount = Mathf.Clamp (TotalAmount, -10, 10);
 	}
 
 	/// Will trigger a blessing or a curse based on the current favour value.

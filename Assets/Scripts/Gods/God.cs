@@ -21,6 +21,10 @@ public class God : MonoBehaviour
 	public Blessing[] blessings = new Blessing[0];
 
 	public FavourResource favour = new FavourResource (3);
+
+	public float blessingCurseTimer;
+	public bool blessingCurseCanCast = true;
+	public float blessingCurseTimeout = 60*5;
 	#endregion
 
 
@@ -28,10 +32,21 @@ public class God : MonoBehaviour
 	void Start ()
 	{
 		ResourcesManager.OnTick += CheckBlessingCurse;
+		blessingCurseTimer = 0;
 	}
 	void Update ()
 	{
-		
+		if (!blessingCurseCanCast)
+		{
+			blessingCurseTimer += Time.deltaTime;
+
+			if (blessingCurseTimer >= blessingCurseTimeout)
+			{
+				blessingCurseTimer = 0f;
+				blessingCurseCanCast = true;
+			}
+		}
+
 	}
 	#endregion
 
@@ -76,16 +91,22 @@ public class God : MonoBehaviour
 	#region HELPER FUNCTIONS
 	void CheckBlessingCurse ()
 	{
-		//do some godly events based on their favour!
-		if (favour.TotalAmount <= -10)
-		{ 
-			int idx = UnityEngine.Random.Range (0, blessings.Length);
-			EventsManager.Instance.InstantiateBlessing (blessings [idx]); 
-		}
-		else if (favour.TotalAmount >= 10)
-		{ 
-			int idx = UnityEngine.Random.Range (0, curses.Length);
-			EventsManager.Instance.InstantiateCurse (curses[idx]); 
+		//5min  timeout until we can fire another blessing/curse
+		if (blessingCurseCanCast)
+		{
+			//do some godly events based on their favour!
+			if (favour.TotalAmount <= -10)
+			{ 
+				int idx = UnityEngine.Random.Range (0, curses.Length);
+				EventsManager.Instance.InstantiateCurse (curses [idx]); 
+			}
+			else if (favour.TotalAmount >= 10)
+			{ 
+				int idx = UnityEngine.Random.Range (0, blessings.Length);
+				EventsManager.Instance.InstantiateBlessing (blessings[idx]); 
+			}
+
+			blessingCurseCanCast = false;
 		}
 	}
 	#endregion
