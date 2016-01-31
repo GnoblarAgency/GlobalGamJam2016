@@ -40,6 +40,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   displayName: Curse of the Seven Snakes
+  image: {fileID: 21300000, guid: c30ed7fb656b14d248a6507d6e33452b, type: 3}
   description: 'Chicomecoatl is disheartenned by your lack of practices and has denied
     your crops to grow. '
   eventLength: 120
