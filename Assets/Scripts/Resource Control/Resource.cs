@@ -155,35 +155,46 @@ public class FavourResource : Resource
 	//or their unrelenting wrath. (These will be major events, such as eclipses, plagues etc with
 	//accompanying animations.
 
-	public static event Action Wrath = delegate {};
-	public static event Action Curse = delegate {};
-	public static event Action Neutral = delegate {};
-	public static event Action Blessing = delegate {};
-	public static event Action Delight = delegate {};
+	public static event Action CurseApplied = delegate {};
+	public static event Action NeutralApplied = delegate {};
+	public static event Action BlessingApplied = delegate {};
+
+	public static event Action CurseNotification = delegate {};
+	public static event Action NeutralNotification = delegate {};
+	public static event Action BlessingNotification = delegate {};
 	#endregion
 
-	public FavourResource (float baseAmount = 5, float baseGrowth = -1)
-		: base ("Favour", baseAmount, baseGrowth) {}
+	/// So that the god becomes harder to please over time.
+	ResourceGrowthModifier godlyMalevolence = new ResourceGrowthModifier (ResourceType.Favour, -5);
+
+	public FavourResource (float baseAmount = 5, float baseGrowth = 0)
+		: base ("Favour", baseAmount, baseGrowth) 
+	{
+		GrowthModifiers.Add (godlyMalevolence);
+	}
 	
 	public override void UpdateResourceTotal (float divisor = 1)
 	{
 		TotalAmount += GetTotalGrowth() / divisor;
+
+		if (TotalAmount <= -10)
+		{ CurseNotification(); }
+		else if (TotalAmount >= 10)
+		{ BlessingNotification(); }
 	}
 
 	/// Will trigger a blessing or a curse based on the current favour value.
 	public void DivineJudgement ()
 	{
 		//do some godly events based on their favour!
-		if (TotalAmount <= -20)
-		{ Wrath(); }
-		else if (TotalAmount <= -10)
-		{ Curse(); }
-		else if (TotalAmount <= 10)
-		{ Neutral(); }
-		else if (TotalAmount <= 20)
-		{ Blessing(); }
-		else 
-		{ Delight(); }
+		if (TotalAmount <= -10)
+		{ CurseApplied(); }
+		else if (TotalAmount >= 10)
+		{ BlessingApplied(); }
+		else
+		{ NeutralApplied(); }
+
+		godlyMalevolence.value = -0.05f;
 	}
 }
 

@@ -64,7 +64,7 @@ public sealed class ResourcesManager : MonoBehaviour
 			PeopleSpawner.instance.CheckSpawn(GetResourcePopulation().TotalAmount);
 		}
 
-		if (mTickTimer >= TICK_DELAY)
+		if (mTicks >= TICK_DELAY)
 		{
 			mTicks = 0;
 
