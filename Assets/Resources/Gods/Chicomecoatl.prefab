@@ -49,8 +49,10 @@ MonoBehaviour:
     value: 5
   - resourceType: 2
     value: 3
-  curses: []
-  blessings: []
+  curses:
+  - {fileID: 11443542, guid: 60f36a8bf95b84b1baf947ccd7649c5a, type: 2}
+  blessings:
+  - {fileID: 11419550, guid: 2b1d77b752dd24f61ab121b928059e4b, type: 2}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
