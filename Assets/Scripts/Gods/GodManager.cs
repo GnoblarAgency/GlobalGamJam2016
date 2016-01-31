@@ -40,7 +40,7 @@ public sealed  class GodManager : MonoBehaviour
 				mGods.Add(god);
 			}
 
-			//SelectActiveGod(2);
+			SelectActiveGod(2);
 		}
 		else
 		{
@@ -64,6 +64,8 @@ public sealed  class GodManager : MonoBehaviour
 
 		ActiveGod = mGods[i];
 		ActiveGod.ApplyEffect();
+
+		ActiveGod.AddFavourModifier (1.5f);
 	}
 
 	public void UpdateGodFavours (float divisor = 1)

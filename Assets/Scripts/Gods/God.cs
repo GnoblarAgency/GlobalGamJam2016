@@ -18,7 +18,7 @@ public class God : MonoBehaviour
 	public Curse[] curses = new Curse[0];
 	public Blessing[] blessings = new Blessing[0];
 
-	public FavourResource favour = new FavourResource (9, -1);
+	public FavourResource favour = new FavourResource (9);
 	#endregion
 
 
@@ -41,6 +41,16 @@ public class God : MonoBehaviour
 	{
 		for (int i = 0; i < resourceModifiers.Length; ++i)
 		{ ResourcesManager.instance.RemoveModifier (resourceModifiers[i]); }
+	}
+
+	/// Adds a new growth modifier that increases the gods favour. This should be used for your initally chosen god.
+	public void AddFavourModifier (float growth)
+	{
+		ResourceGrowthModifier favourMod = new ResourceGrowthModifier ( ResourceType.Favour, growth );
+
+		List <ResourceGrowthModifier> expandedList = new List<ResourceGrowthModifier> (resourceModifiers);
+		expandedList.Add (favourMod);
+		resourceModifiers = expandedList.ToArray ();
 	}
 	#endregion
 
