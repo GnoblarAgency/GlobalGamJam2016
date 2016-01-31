@@ -3,23 +3,24 @@ using System.Collections;
 
 public class CameraMotion : MonoBehaviour {
 	
-	float ScrollSpeed = 40;
+	float ScrollSpeed = 110;
 	float ScrollEdge = 0.01f;
 
-	private int HorizontalScroll = 1;
-	private int VerticalScroll = 1;
-	private int DiagonalScroll = 1;
+	int ScrollDistanceFromCentre = 180;
 
-	float PanSpeed = 50;
+	private int HorizontalScroll = 2;
+	private int VerticalScroll = 2;
+	private int DiagonalScroll = 2;
+
+	float PanSpeed = 1000;
 
 	Vector2 ZoomRange;
 	float CurrentZoom = 0;
 	float ZoomZpeed = 1;
-	float ZoomRotation = 1;
+	float ZoomRotation = 1.3f;
 
 	private Vector3 InitPos;
 	private Vector3 InitRotation;
-
 
 
 	void Start()
@@ -31,10 +32,26 @@ public class CameraMotion : MonoBehaviour {
 
 	}
 
+	bool IsCamInBounds ()
+	{
+		return (transform.position.z > -135 && transform.position.z < 260 && transform.position.x < 565 && transform.position.x > 267);
+	}
+	void ClampCamToBounds ()
+	{
+		float x = Mathf.Clamp (transform.position.x, 267+2, 565-2);
+		float z = Mathf.Clamp (transform.position.z, -50+2, 260-2);
+
+		Vector3 pos = transform.position;
+		pos.x = x;
+		pos.z = z;
+
+		transform.position = pos;
+	}
+
 	void Update ()
 	{
 		//PAN
-		if ( Input.GetKey("mouse 2") )
+		if ( Input.GetKey("mouse 1") )
 		{
 			//(Input.mousePosition.x - Screen.width * 0.5)/(Screen.width * 0.5)
 			if (Vector3.Distance(transform.position, InitPos) < 20)
@@ -46,20 +63,45 @@ public class CameraMotion : MonoBehaviour {
 		}
 		else
 		{
-			if ( (Input.GetKey("d") || Input.mousePosition.x >= Screen.width * (1 - ScrollEdge)) &&  (Vector3.Distance(transform.position+(transform.right * Time.deltaTime * ScrollSpeed), InitPos) < 80) )
+			/*if ( (Input.GetKey("d") || Input.mousePosition.x >= Screen.width * (1 - ScrollEdge)) 
+				&&  (Vector3.Distance(transform.position+(transform.right * Time.deltaTime * ScrollSpeed), InitPos) < ScrollDistanceFromCentre) )
 			{
 				transform.Translate(transform.right * Time.deltaTime * ScrollSpeed, Space.World);
 			}
-			else if ( (Input.GetKey("a") || Input.mousePosition.x <= Screen.width * ScrollEdge) &&  (Vector3.Distance(transform.position+(transform.right * Time.deltaTime * -ScrollSpeed), InitPos) < 80) )
+			else if ( (Input.GetKey("a") || Input.mousePosition.x <= Screen.width * ScrollEdge) 
+				&&  (Vector3.Distance(transform.position+(transform.right * Time.deltaTime * -ScrollSpeed), InitPos) < ScrollDistanceFromCentre) )
 			{
 				transform.Translate(transform.right * Time.deltaTime * -ScrollSpeed, Space.World);
 			}
 
-			if ( (Input.GetKey("w") || Input.mousePosition.y >= Screen.height * (1 - ScrollEdge)) &&  (Vector3.Distance(transform.position+(transform.forward * Time.deltaTime * ScrollSpeed), InitPos) < 80) )
+			if ( (Input.GetKey("w") || Input.mousePosition.y >= Screen.height * (1 - ScrollEdge)) 
+				&&  (Vector3.Distance(transform.position+(transform.forward * Time.deltaTime * ScrollSpeed), InitPos) < ScrollDistanceFromCentre) )
 			{
 				transform.Translate(transform.forward * Time.deltaTime * ScrollSpeed, Space.World);
 			}
-			else if ( (Input.GetKey("s") || Input.mousePosition.y <= Screen.height * ScrollEdge) &&  (Vector3.Distance(transform.position+(transform.forward * Time.deltaTime * -ScrollSpeed), InitPos) < 80) )
+			else if ( (Input.GetKey("s") || Input.mousePosition.y <= Screen.height * ScrollEdge) 
+				&&  (Vector3.Distance(transform.position+(transform.forward * Time.deltaTime * -ScrollSpeed), InitPos) < ScrollDistanceFromCentre) )
+			{
+				transform.Translate(transform.forward * Time.deltaTime * -ScrollSpeed, Space.World);
+			}*/
+			if ( (Input.GetKey("d") || Input.mousePosition.x >= Screen.width * (1 - ScrollEdge)) 
+				&& IsCamInBounds ())
+			{
+				transform.Translate(transform.right * Time.deltaTime * ScrollSpeed, Space.World);
+			}
+			else if ( (Input.GetKey("a") || Input.mousePosition.x <= Screen.width * ScrollEdge) 
+				&& IsCamInBounds ())
+			{
+				transform.Translate(transform.right * Time.deltaTime * -ScrollSpeed, Space.World);
+			}
+
+			if ( (Input.GetKey("w") || Input.mousePosition.y >= Screen.height * (1 - ScrollEdge)) 
+				&& IsCamInBounds ())
+			{
+				transform.Translate(transform.forward * Time.deltaTime * ScrollSpeed, Space.World);
+			}
+			else if ( (Input.GetKey("s") || Input.mousePosition.y <= Screen.height * ScrollEdge) 
+				&& IsCamInBounds ())
 			{
 				transform.Translate(transform.forward * Time.deltaTime * -ScrollSpeed, Space.World);
 			}
@@ -76,5 +118,9 @@ public class CameraMotion : MonoBehaviour {
 
 		transform.eulerAngles = temp;
 
+		ClampCamToBounds();
+
 	}
+
+	
 }
