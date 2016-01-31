@@ -57,6 +57,7 @@ public sealed class ResourcesManager : MonoBehaviour
 			mTicks++;
 
 			UpdateResources_Increment ();
+			GodManager.Instance.UpdateGodFavours (TICK_DELAY);
 			PopulationAssignment.instance.UpdatePopulationAssignment();
 
 
@@ -68,6 +69,7 @@ public sealed class ResourcesManager : MonoBehaviour
 			mTicks = 0;
 
 			mStatsEngine.UpdateStats ();
+			GodManager.Instance.CheckDivineJudgement();
 			OnTick ();	
 
 			/*mTickTimer = 0f;
