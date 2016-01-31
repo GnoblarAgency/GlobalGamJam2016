@@ -4,7 +4,7 @@ using UnityEngine.UI;
 public class UIInGame : MonoBehaviour
 {
 	#region CONSTANTS
-	public const string NUMBER_FORMAT 	= "{0:0}";
+	public const string NUMBER_FORMAT 	= "{0:0} ({1:0})";
 	#endregion
 
 
@@ -39,9 +39,9 @@ public class UIInGame : MonoBehaviour
 
 	void Update ()
 	{
-		population.text = string.Format (NUMBER_FORMAT, mPopulation.TotalAmount);
-		food.text = string.Format (NUMBER_FORMAT, mFood.TotalAmount);
-		prisoners.text = string.Format (NUMBER_FORMAT, mPrisoners.TotalAmount);
+		population.text = string.Format (NUMBER_FORMAT, mPopulation.TotalAmount, mPopulation.GetAdditionalGrowth());
+		food.text = string.Format (NUMBER_FORMAT, mFood.TotalAmount, mFood.GetAdditionalGrowth());
+		prisoners.text = string.Format (NUMBER_FORMAT, mPrisoners.TotalAmount, mPrisoners.GetAdditionalGrowth());
 
 		happiness.value = mHappiness.TotalAmount / 100;
 
