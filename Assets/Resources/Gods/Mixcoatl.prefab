@@ -43,7 +43,8 @@ MonoBehaviour:
   title: God of War and The Hunt
   biography: 
   icon: {fileID: 21300000, guid: d3c76aa035c014513a8066a463a7e143, type: 3}
-  image: {fileID: 21300000, guid: ae9c90a8733d14f029599b0a097218b1, type: 3}
+  happyImage: {fileID: 21300000, guid: 2466728ad7ecf40c3a7c173e0f159a4b, type: 3}
+  angryImage: {fileID: 21300000, guid: ae9c90a8733d14f029599b0a097218b1, type: 3}
   resourceModifiers:
   - resourceType: 0
     value: 5

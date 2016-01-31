@@ -40,6 +40,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   displayName: Curse of the Hunted
+  image: {fileID: 21300000, guid: ae9c90a8733d14f029599b0a097218b1, type: 3}
   description: The god of the Hunt, Mixcoatl, feels that you have not fulfilled your
     earthbound duties. He foils your peoples hunting skills, and makes it harder for
     them to capture prisoners.

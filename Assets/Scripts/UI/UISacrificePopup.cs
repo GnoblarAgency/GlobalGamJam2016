@@ -132,7 +132,7 @@ public class UISacrificePopup : MonoBehaviour
 		mSelectedGod = god;
 
 		header.text = string.Format(SACRIFICE_FORMAT, mSelectedGod.displayName);
-		godImage.sprite = god.image;
+		godImage.sprite = god.GetImage();
 	}
 	#endregion
 }

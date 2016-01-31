@@ -12,7 +12,8 @@ public class God : MonoBehaviour
 	public string biography;
 
 	public Sprite icon;
-	public Sprite image;
+	public Sprite happyImage;
+	public Sprite angryImage;
 
 	public ResourceGrowthModifier[] resourceModifiers = new ResourceGrowthModifier[0]; 
 
@@ -36,6 +37,18 @@ public class God : MonoBehaviour
 
 
 	#region PUBLIC API
+	public Sprite GetImage()
+	{
+		if (favour.TotalAmount > 0)
+		{
+			return happyImage;
+		}
+		else
+		{
+			return angryImage;
+		}
+	}
+
 	public void ApplyEffect ()
 	{
 		for (int i = 0; i < resourceModifiers.Length; ++i)
