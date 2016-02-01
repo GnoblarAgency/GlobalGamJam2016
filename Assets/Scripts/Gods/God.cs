@@ -47,24 +47,6 @@ public class God : MonoBehaviour
 			}
 		}
 
-		//5min  timeout until we can fire another blessing/curse
-		if (blessingCurseCanCast)
-		{
-			//do some godly events based on their favour!
-			if (favour.TotalAmount == -10)
-			{ 
-				int idx = UnityEngine.Random.Range (0, curses.Length);
-				EventsManager.Instance.InstantiateCurse (curses [idx]); 
-			}
-			else if (favour.TotalAmount >= 10)
-			{ 
-				int idx = UnityEngine.Random.Range (0, blessings.Length);
-				EventsManager.Instance.InstantiateBlessing (blessings[idx]); 
-			}
-
-			blessingCurseCanCast = false;
-		}
-
 	}
 	#endregion
 
@@ -109,7 +91,23 @@ public class God : MonoBehaviour
 	#region HELPER FUNCTIONS
 	void CheckBlessingCurse ()
 	{
-		
+		//5min  timeout until we can fire another blessing/curse
+		if (blessingCurseCanCast)
+		{
+			//do some godly events based on their favour!
+			if (favour.TotalAmount <= -9.5)
+			{ 
+				int idx = UnityEngine.Random.Range (0, curses.Length);
+				EventsManager.Instance.InstantiateCurse (curses [idx]); 
+			}
+			else if (favour.TotalAmount >= 9.5)
+			{ 
+				int idx = UnityEngine.Random.Range (0, blessings.Length);
+				EventsManager.Instance.InstantiateBlessing (blessings[idx]); 
+			}
+
+			blessingCurseCanCast = false;
+		}
 	}
 	#endregion
 }
