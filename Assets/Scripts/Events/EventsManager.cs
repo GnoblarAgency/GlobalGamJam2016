@@ -41,6 +41,11 @@ public sealed class EventsManager : MonoBehaviour
 
 	void Update ()
 	{
+		if (Input.GetKeyUp(KeyCode.C))
+		{
+
+			InstantiateEvent(mAvailableWorldEvents[1]);
+		}
 	}
 	#endregion
 
